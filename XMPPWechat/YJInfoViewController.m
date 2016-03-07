@@ -1,29 +1,18 @@
 //
-//  YJMeTableViewController.m
+//  YJInfoViewController.m
 //  XMPPWechat
 //
 //  Created by 姚家庆 on 16/3/7.
 //  Copyright © 2016年 姚家庆. All rights reserved.
 //
 
-#import "YJMeTableViewController.h"
-#import "YJXMPPTool.h"
-#import "YJAccount.h"
-#import "UIStoryboard+WF.h"
-@interface YJMeTableViewController ()
+#import "YJInfoViewController.h"
+
+@interface YJInfoViewController ()
 
 @end
 
-@implementation YJMeTableViewController
-- (IBAction)loginout:(id)sender {
-    //注销
-    [[YJXMPPTool sharedYJXMPPTool]xmppLogout];
-    //登录状态设为no
-    [YJAccount shareAccount].login=NO;
-    [[YJAccount shareAccount]saveToSandBox];
-    //返回登录界面
-    [UIStoryboard showInitialVCWithName:@"ConnectView"];
-}
+@implementation YJInfoViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -40,19 +29,10 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
 
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//    return 0;
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    return 0;
-//    
-//}
-//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    return 44;
-//}
+
+
+
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
