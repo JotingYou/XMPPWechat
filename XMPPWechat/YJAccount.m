@@ -28,7 +28,7 @@ static int port=5222;
         NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
         acc.loginAct=[defaults objectForKey:kActKey];
         acc.loginPsd=[defaults objectForKey:kPwdKey];
-        acc.login=[defaults objectForKey:kLoginKey];
+        acc.login=[defaults boolForKey:kLoginKey];
     });
     return acc;
     

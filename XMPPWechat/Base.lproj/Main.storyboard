@@ -166,7 +166,7 @@
         <!--Root View Controller-->
         <scene sceneID="adW-ft-Jmk">
             <objects>
-                <tableViewController id="Eus-gI-CcY" sceneMemberID="viewController">
+                <tableViewController id="Eus-gI-CcY" customClass="YJMeTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Pyl-cC-90l">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -186,7 +186,13 @@
                             <outlet property="delegate" destination="Eus-gI-CcY" id="w9S-ok-GN4"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="6Jm-N7-0IB"/>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="6Jm-N7-0IB">
+                        <barButtonItem key="rightBarButtonItem" title="注销" id="aES-jL-T9w">
+                            <connections>
+                                <action selector="loginout:" destination="Eus-gI-CcY" id="OW7-Em-SKp"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c7U-Li-xMD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

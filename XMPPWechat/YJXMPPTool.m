@@ -139,7 +139,7 @@ singleton_implementation(YJXMPPTool)
         [self setupStream];
     }
     // 1.设置登录用户的jid
-    XMPPJID *myJid = nil;
+    XMPPJID *myJid=nil;
     // resource 用户登录客户端设备登录的类型
     
     /*
@@ -149,8 +149,11 @@ singleton_implementation(YJXMPPTool)
      //设置登录JID
      }*/
     YJAccount *account = [YJAccount shareAccount];
+//    NSLog(@"self.isRegisterOperation==%d",self.isRegisterOperation);
     if (self.isRegisterOperation) {//注册
         NSString *registerUser = account.regisAct;
+//        NSLog(@"#####################account=%@,password=%@",account.regisAct,account.reginsPsd);
+        
         myJid = [XMPPJID jidWithUser:registerUser domain:account.domain resource:nil];
     }else{//登录操作
         NSString *loginUser = [YJAccount shareAccount].loginAct;

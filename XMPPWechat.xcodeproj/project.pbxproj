@@ -178,6 +178,7 @@
 		3E4317961C8AC93100456CD7 /* HttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4317921C8AC93100456CD7 /* HttpTool.m */; };
 		3E43179D1C8ACAE500456CD7 /* YJXMPPTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E43179C1C8ACAE500456CD7 /* YJXMPPTool.m */; };
 		3E5D7AED1C8D4357007F22C1 /* YJAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5D7AEC1C8D4357007F22C1 /* YJAccount.m */; };
+		3EC006491C8DAC070049507C /* YJMeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC006481C8DAC070049507C /* YJMeTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -546,6 +547,8 @@
 		3E43179C1C8ACAE500456CD7 /* YJXMPPTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJXMPPTool.m; sourceTree = "<group>"; };
 		3E5D7AEB1C8D4357007F22C1 /* YJAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJAccount.h; sourceTree = "<group>"; };
 		3E5D7AEC1C8D4357007F22C1 /* YJAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJAccount.m; sourceTree = "<group>"; };
+		3EC006471C8DAC070049507C /* YJMeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJMeTableViewController.h; sourceTree = "<group>"; };
+		3EC006481C8DAC070049507C /* YJMeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJMeTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -690,6 +693,7 @@
 		3E430F451C8A9E2300456CD7 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3E4317901C8AC92400456CD7 /* tool */,
 				3E43173A1C8AB50900456CD7 /* main */,
 				3E4317391C8AB50200456CD7 /* login */,
 			);
@@ -1505,9 +1509,10 @@
 		3E43173A1C8AB50900456CD7 /* main */ = {
 			isa = PBXGroup;
 			children = (
-				3E4317901C8AC92400456CD7 /* tool */,
 				3E430F131C8A9D1C00456CD7 /* ViewController.h */,
 				3E430F141C8A9D1C00456CD7 /* ViewController.m */,
+				3EC006471C8DAC070049507C /* YJMeTableViewController.h */,
+				3EC006481C8DAC070049507C /* YJMeTableViewController.m */,
 			);
 			name = main;
 			sourceTree = "<group>";
@@ -1833,6 +1838,7 @@
 				3E4317251C8AA06000456CD7 /* XMPPSRVResolver.m in Sources */,
 				3E4316D61C8AA06000456CD7 /* XMPPSystemInputActivityMonitor.m in Sources */,
 				3E43171D1C8AA06000456CD7 /* NSXMLElement+XEP_0297.m in Sources */,
+				3EC006491C8DAC070049507C /* YJMeTableViewController.m in Sources */,
 				3E43170C1C8AA06000456CD7 /* XMPPMessageArchiving_Message_CoreDataObject.m in Sources */,
 				3E4316E01C8AA06000456CD7 /* XMPPRoomOccupantCoreDataStorageObject.m in Sources */,
 				3E4316F21C8AA06000456CD7 /* XMPPvCardTempAdrTypes.m in Sources */,

@@ -24,9 +24,10 @@
         
     }
     //读取输入内容
-    [YJAccount shareAccount].loginAct=self.txtAccount.text;
-    [YJAccount shareAccount].loginPsd=self.txtPassword.text;
+    [YJAccount shareAccount].regisAct=self.txtAccount.text;
+    [YJAccount shareAccount].reginsPsd=self.txtPassword.text;
     
+//    [[YJAccount shareAccount] saveToSandBox];
     [MBProgressHUD showMessage:@"正在注册中"];
     //调用注册方法
     __weak typeof(self) selfVC=self;
@@ -45,7 +46,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [MBProgressHUD hideHUD];
         if (resultType == XMPPResultTypeRegisterSucess) {
-            [MBProgressHUD showMessage:@"注册成功"];
+            [MBProgressHUD showSuccess:@"注册成功"];
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
         else{

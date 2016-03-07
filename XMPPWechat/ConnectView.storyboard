@@ -88,11 +88,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="欢迎" id="yzG-Mk-1hf">
                         <barButtonItem key="backBarButtonItem" title="取消" id="vDL-g7-J3p"/>
-                        <barButtonItem key="leftBarButtonItem" title="连接" id="uS5-wy-5ua">
-                            <connections>
-                                <action selector="connect:" destination="OAI-fD-nzt" id="2qQ-UT-A17"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="txtAccount" destination="kDI-Tl-mrK" id="poa-oW-a1f"/>

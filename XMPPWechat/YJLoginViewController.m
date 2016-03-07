@@ -10,7 +10,11 @@
 #import "AppDelegate.h"
 #import "MBProgressHUD+HM.h"
 #import "UIStoryboard+WF.h"
-
+#import "YJXMPPTool.h"
+#import "YJAccount.h"
+#define kActKey @"act"
+#define kPwdKey @"pwd"
+#define kLoginKey @"login"
 @interface YJLoginViewController ()<NSStreamDelegate>{
     NSInputStream *_inputStream;
     NSOutputStream *_outputStream;
@@ -22,78 +26,115 @@
 
 @implementation YJLoginViewController
 - (IBAction)connect:(UIBarButtonItem *)sender {
-    //ios里实现sokcet的连接，使用C语言
-    // 1.与服务器通过三次握手建立连接
-    NSString *host=@"127.0.0.1";
-    int port=12345;
-    
-    // 2.定义输入输出流
-    CFReadStreamRef readStream;
-    CFWriteStreamRef writeStream;
-    // 3.分配输入输出流的内存空间
-    CFStreamCreatePairWithSocketToHost(NULL, (__bridge CFStringRef)host,port,&readStream,&writeStream);
-    
-    // 4.把C语言的输入输出流转成OC对象
-    _inputStream =(__bridge NSInputStream *)readStream;
-    _outputStream=(__bridge NSOutputStream *)writeStream;
-    // 5.设置代理,监听数据接收的状态
-    _inputStream.delegate=self;
-    _outputStream.delegate=self;
-    // 把输入输入流添加到主运行循环(RunLoop)
-    // 主运行循环是监听网络状态
-    [_inputStream scheduleInRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
-    [_outputStream scheduleInRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
-    // 6.打开输入输出流
-    [_inputStream open];
-    [_outputStream open];
+//    //ios里实现sokcet的连接，使用C语言
+//    // 1.与服务器通过三次握手建立连接
+//    NSString *host=@"127.0.0.1";
+//    int port=5222;
+//    
+//    // 2.定义输入输出流
+//    CFReadStreamRef readStream;
+//    CFWriteStreamRef writeStream;
+//    // 3.分配输入输出流的内存空间
+//    CFStreamCreatePairWithSocketToHost(NULL, (__bridge CFStringRef)host,port,&readStream,&writeStream);
+//    
+//    // 4.把C语言的输入输出流转成OC对象
+//    _inputStream =(__bridge NSInputStream *)readStream;
+//    _outputStream=(__bridge NSOutputStream *)writeStream;
+//    // 5.设置代理,监听数据接收的状态
+//    _inputStream.delegate=self;
+//    _outputStream.delegate=self;
+//    // 把输入输入流添加到主运行循环(RunLoop)
+//    // 主运行循环是监听网络状态
+//    [_inputStream scheduleInRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+//    [_outputStream scheduleInRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+//    // 6.打开输入输出流
+//    [_inputStream open];
+//    [_outputStream open];
 }
 - (IBAction)login:(id)sender {
-    //如果账号或密码为空，则返回
+    // 1.如果账号或密码为空，则返回
     if (!self.txtAccount.text.length || !self.txtPassword.text.length) {
         [MBProgressHUD showError:@"账号或密码不能为空"];
         return;
     }
     [MBProgressHUD showMessage:@"正在登录中_(:з」∠)_"];
+    // 2.登录服务器
+    // 2.1把数据缓存到沙盒
+    [YJAccount shareAccount].loginAct=self.txtAccount.text;
+    [YJAccount shareAccount].loginPsd=self.txtPassword.text;
     
-    [UIStoryboard showInitialVCWithName:@"Main"];
-}
--(void)stream:(NSStream *)aStream handleEvent:(NSStreamEvent)eventCode{
-    switch (eventCode) {
-        case NSStreamEventOpenCompleted:
-            NSLog(@"%@",aStream);
-            NSLog(@"连接成功 通道打开");
-            break;
-        case NSStreamEventHasBytesAvailable:
-            NSLog(@"数据可读");
-            [self readData];
-            break;
-        case NSStreamEventHasSpaceAvailable:
-            NSLog(@"可以发送数据");
-            break;
-        case NSStreamEventErrorOccurred:
-            NSLog(@"发生错误");
-            break;
-        case NSStreamEventEndEncountered:
-            NSLog(@"成功断开连接");
-            break;
-            
-        default:
-            break;
-    }
-}
-#pragma mark 读取服务器返回的数据
--(void)readData{
-     //定义缓冲区 这个缓冲区只能存储1024字节
-    uint8_t buf[1024];
-    // 读取数据
-    // len为服务器读取到的实际字节数
-    NSInteger len=[_inputStream read:buf maxLength:sizeof(buf)];
+    // 2.2调用AppDelegate的xmppLogin方法
+    
+    // ?怎么把appdelegate的登录结果告诉WCLoginViewControllers控制器
+    // 》代理
+    // 》block
+    // 》通知
+    
+    // block会对self进行强引用
+    __weak typeof(self) selfVc = self;
+    //自己写的block ，有强引用的时候，使用弱引用,系统block,用强引用
+    
+    //设置标识
+    [YJXMPPTool sharedYJXMPPTool].registerOperation=NO;
+    [[YJXMPPTool sharedYJXMPPTool] xmppLogin:^(XMPPResultType resultType){
+        [selfVc handleXMPPResult:resultType];
+    }];
 
-     // 把缓冲区里的实现字节数转成字符串
-    NSString *receiveStr=[[NSString alloc]initWithBytes:buf length:len
- encoding:NSUTF8StringEncoding];
-    NSLog(@"%@",receiveStr);
+    
 }
+-(void)handleXMPPResult:(XMPPResultType)resultType{
+    //回到主线程更新UI
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [MBProgressHUD hideHUD];
+        if (resultType==XMPPResultTypeLoginSucess) {
+            [MBProgressHUD showSuccess:@"登录成功"];
+            [YJAccount shareAccount].login=YES;
+            [[YJAccount shareAccount] saveToSandBox];
+            [UIStoryboard showInitialVCWithName:@"Main"];
+        }
+        else{
+            [MBProgressHUD showError:@"账号或密码错误"];
+        }
+    });
+}
+//-(void)stream:(NSStream *)aStream handleEvent:(NSStreamEvent)eventCode{
+//    switch (eventCode) {
+//        case NSStreamEventOpenCompleted:
+//            NSLog(@"%@",aStream);
+//            NSLog(@"连接成功 通道打开");
+//            break;
+//        case NSStreamEventHasBytesAvailable:
+//            NSLog(@"数据可读");
+//            [self readData];
+//            break;
+//        case NSStreamEventHasSpaceAvailable:
+//            NSLog(@"可以发送数据");
+//            break;
+//        case NSStreamEventErrorOccurred:
+//            NSLog(@"发生错误");
+//            break;
+//        case NSStreamEventEndEncountered:
+//            NSLog(@"成功断开连接");
+//            break;
+//            
+//        default:
+//            break;
+//    }
+//}
+#pragma mark 读取服务器返回的数据
+//-(void)readData{
+//     //定义缓冲区 这个缓冲区只能存储1024字节
+//    uint8_t buf[1024];
+//    // 读取数据
+//    // len为服务器读取到的实际字节数
+//    NSInteger len=[_inputStream read:buf maxLength:sizeof(buf)];
+//
+//     // 把缓冲区里的实现字节数转成字符串
+//    NSString *receiveStr=[[NSString alloc]initWithBytes:buf length:len
+// encoding:NSUTF8StringEncoding];
+//    NSLog(@"%@",receiveStr);
+//}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.

@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "DDLog.h"
 #import "DDTTYLogger.h"
+#import "YJAccount.h"
+#import "YJXMPPTool.h"
 @interface AppDelegate ()
 
 @end
@@ -18,6 +20,16 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    //配置XMPP日志
+    [DDLog addLogger:[DDTTYLogger sharedInstance]];
+    //判断用户是否登录
+    if ([YJAccount shareAccount].islogin) {
+        //进入主界面
+        id mainVC=[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateInitialViewController];
+        self.window.rootViewController=mainVC;
+        //自动登录
+        [[YJXMPPTool sharedYJXMPPTool ]xmppLogin:nil];
+    }
     return YES;
 }
 
