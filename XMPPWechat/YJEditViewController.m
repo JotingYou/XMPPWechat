@@ -1,58 +1,37 @@
 //
-//  YJMeTableViewController.m
+//  YJEditViewController.m
 //  XMPPWechat
 //
-//  Created by 姚家庆 on 16/3/7.
+//  Created by 姚家庆 on 16/3/8.
 //  Copyright © 2016年 姚家庆. All rights reserved.
 //
 
-#import "YJMeTableViewController.h"
-#import "YJXMPPTool.h"
-#import "YJAccount.h"
-#import "UIStoryboard+WF.h"
-#import "AppDelegate.h"
-#import "XMPPvCardTemp.h"
-@interface YJMeTableViewController ()
-@property (weak, nonatomic) IBOutlet UITableViewCell *cardCell;
+#import "YJEditViewController.h"
+
+@interface YJEditViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *editText;
+
 
 @end
 
-@implementation YJMeTableViewController
-- (IBAction)loginout:(id)sender {
-    //注销
-    [[YJXMPPTool sharedYJXMPPTool]xmppLogout];
-    //登录状态设为no
-    [YJAccount shareAccount].login=NO;
-    [[YJAccount shareAccount]saveToSandBox];
-    //返回登录界面
-    [UIStoryboard showInitialVCWithName:@"ConnectView"];
+@implementation YJEditViewController
+- (IBAction)save:(id)sender {
+    self.cell.detailTextLabel.text=self.editText.text;
+    if ([self.delegate respondsToSelector:@selector(YJEditViewController:didfinished:)]) {
+        [self.delegate YJEditViewController:self didfinished:sender];
+    }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    self.cardCell.imageView.image=[UIImage imageNamed:@"46"];
-//    self.cardCell.textLabel.text=[NSString stringWithFormat:@"%@",[YJAccount shareAccount].loginAct];
-//    self.cardCell.detailTextLabel.text=[NSString stringWithFormat:@"微信号:%@",[YJAccount shareAccount].loginAct];
+    self.title=self.cell.textLabel.text;
+    self.editText.text=self.cell.detailTextLabel.text;
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
     
-    //通过XMPPXMPPvCardTemp获取用户数据
-    //0获取名片
-    XMPPvCardTemp *vCard=[YJXMPPTool sharedYJXMPPTool].vCard.myvCardTemp;
-    //1.获取头像
-    if (vCard.photo) {
-        self.cardCell.imageView.image=[UIImage imageWithData:vCard.photo];
-
-    }else{
-        self.cardCell.imageView.image=[UIImage imageNamed:@"46"];
-    }
-
-    //2.获取昵称
-    if(vCard.nickname){
-        self.cardCell.textLabel.text=vCard.nickname;
-    }else{
-       self.cardCell.textLabel.text=@"请设置昵称";
-    }
-    //3.微信号
-    self.cardCell.detailTextLabel.text=[NSString stringWithFormat:@"微信号:%@",[YJAccount shareAccount].loginAct];
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,19 +39,18 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
-
+//#pragma mark - Table view data source
+//
 //- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+//#warning Incomplete implementation, return the number of sections
 //    return 0;
 //}
 //
 //- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+//#warning Incomplete implementation, return the number of rows
 //    return 0;
-//    
 //}
-//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    return 44;
-//}
+//
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];

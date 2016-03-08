@@ -180,6 +180,7 @@
 		3E5D7AED1C8D4357007F22C1 /* YJAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5D7AEC1C8D4357007F22C1 /* YJAccount.m */; };
 		3EC006491C8DAC070049507C /* YJMeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC006481C8DAC070049507C /* YJMeTableViewController.m */; };
 		3EC0064C1C8DBCFF0049507C /* YJInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0064B1C8DBCFF0049507C /* YJInfoViewController.m */; };
+		3EC006511C8E9F2E0049507C /* YJEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC006501C8E9F2E0049507C /* YJEditViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -552,6 +553,8 @@
 		3EC006481C8DAC070049507C /* YJMeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJMeTableViewController.m; sourceTree = "<group>"; };
 		3EC0064A1C8DBCFF0049507C /* YJInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJInfoViewController.h; sourceTree = "<group>"; };
 		3EC0064B1C8DBCFF0049507C /* YJInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJInfoViewController.m; sourceTree = "<group>"; };
+		3EC0064F1C8E9F2E0049507C /* YJEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJEditViewController.h; sourceTree = "<group>"; };
+		3EC006501C8E9F2E0049507C /* YJEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJEditViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1512,12 +1515,7 @@
 		3E43173A1C8AB50900456CD7 /* main */ = {
 			isa = PBXGroup;
 			children = (
-				3E430F131C8A9D1C00456CD7 /* ViewController.h */,
-				3E430F141C8A9D1C00456CD7 /* ViewController.m */,
-				3EC006471C8DAC070049507C /* YJMeTableViewController.h */,
-				3EC006481C8DAC070049507C /* YJMeTableViewController.m */,
-				3EC0064A1C8DBCFF0049507C /* YJInfoViewController.h */,
-				3EC0064B1C8DBCFF0049507C /* YJInfoViewController.m */,
+				3EC0064D1C8E9F090049507C /* ME */,
 			);
 			name = main;
 			sourceTree = "<group>";
@@ -1604,6 +1602,21 @@
 				3E43179C1C8ACAE500456CD7 /* YJXMPPTool.m */,
 			);
 			name = tool;
+			sourceTree = "<group>";
+		};
+		3EC0064D1C8E9F090049507C /* ME */ = {
+			isa = PBXGroup;
+			children = (
+				3E430F131C8A9D1C00456CD7 /* ViewController.h */,
+				3E430F141C8A9D1C00456CD7 /* ViewController.m */,
+				3EC006471C8DAC070049507C /* YJMeTableViewController.h */,
+				3EC006481C8DAC070049507C /* YJMeTableViewController.m */,
+				3EC0064A1C8DBCFF0049507C /* YJInfoViewController.h */,
+				3EC0064B1C8DBCFF0049507C /* YJInfoViewController.m */,
+				3EC0064F1C8E9F2E0049507C /* YJEditViewController.h */,
+				3EC006501C8E9F2E0049507C /* YJEditViewController.m */,
+			);
+			name = ME;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1898,6 +1911,7 @@
 				3E4316CE1C8AA06000456CD7 /* XMPPResourceCoreDataStorageObject.m in Sources */,
 				3E4317841C8ABF6400456CD7 /* SDWebImageManager.m in Sources */,
 				3E4316E31C8AA06000456CD7 /* XMPPRoomMessageHybridCoreDataStorageObject.m in Sources */,
+				3EC006511C8E9F2E0049507C /* YJEditViewController.m in Sources */,
 				3E4317171C8AA06000456CD7 /* XMPPAutoTime.m in Sources */,
 				3E4316C61C8AA06000456CD7 /* XMPPPresence.m in Sources */,
 				3E4316E51C8AA06000456CD7 /* XMPPRoomMemoryStorage.m in Sources */,
