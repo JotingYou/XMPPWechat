@@ -11,7 +11,7 @@
 #import "YJXMPPTool.h"
 #import "YJAccount.h"
 #import "YJEditViewController.h"
-@interface YJInfoViewController ()<UINavigationControllerDelegate,YJEditViewControllerDelegate>
+@interface YJInfoViewController ()<UINavigationControllerDelegate,YJEditViewControllerDelegate,UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *iconImg;
 @property (weak, nonatomic) IBOutlet UITableViewCell *nicknameCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *wechatNumCell;
@@ -99,26 +99,63 @@
 }
 -(void)changeImg{
     UIAlertController *alertController=[UIAlertController alertControllerWithTitle:@"修改头像" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    //图片选择控制器
+    UIImagePickerController *imgPC=[[UIImagePickerController alloc]init];
+    //设置代理
+    imgPC.delegate=self;
+    //允许编辑图片
+    imgPC.allowsEditing=YES;
+    
     UIAlertAction *actionCancle=[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
     UIAlertAction *actionChoose=[UIAlertAction actionWithTitle:@"从相册选择" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
+//        //允许编辑图片
+//        imgPC.allowsEditing=YES;
+        //从相册选择
+        imgPC.sourceType=UIImagePickerControllerSourceTypePhotoLibrary;
+//        //显示控制器
+        [self presentViewController:imgPC animated:YES completion:nil];
+        
     }];
     UIAlertAction *actionTakePhoto=[UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+//        //图片选择控制器
+//        UIImagePickerController *imgPC=[[UIImagePickerController alloc]init];
+//        //设置代理
+//        imgPC.delegate=self;
+//        //允许编辑图片
+//        imgPC.allowsEditing=YES;
+        //拍照
+        imgPC.sourceType=UIImagePickerControllerSourceTypeCamera;
+        //显示控制器
+        [self presentViewController:imgPC animated:YES completion:nil];
         
     }];
     [alertController addAction:actionCancle];
     [alertController addAction:actionChoose];
     [alertController addAction:actionTakePhoto];
     [self presentViewController:alertController animated:YES completion:nil];
+//    [self presentViewController:imgPC animated:YES completion:nil];
 }
-#pragma mark 实现代理方法
+#pragma mark 实现imagePickerController代理方法
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
+    YJLog(@"##########info=%@##########",info);
+    //获取修改后的图片
+    UIImage *editImg=info[UIImagePickerControllerEditedImage];
+    self.iconImg.image=editImg;
+    //移除图片控制器
+    [self dismissViewControllerAnimated:YES completion:nil];
+    //上传新图片
+    [self YJEditViewController:nil didfinished:nil];
+    
+}
+#pragma mark 实现YJEditViewController代理方法
 -(void)YJEditViewController:(YJEditViewController *)YJEditViewController didfinished:(id)sender{
     //获取电子卡片
     XMPPvCardTemp *vCard=[YJXMPPTool sharedYJXMPPTool].vCard.myvCardTemp;
     //存储修改信息
     vCard.photo=UIImageJPEGRepresentation(self.iconImg.image, 0.75);
     vCard.nickname=self.nicknameCell.detailTextLabel.text;
-    NSLog(@"nickname=%@",vCard.nickname);
+    YJLog(@"nickname=%@",vCard.nickname);
 //    NSMutableArray *temp=[NSMutableArray array];
     vCard.middleName=self.adressCell.detailTextLabel.text;
     vCard.prefix=self.sexCell.detailTextLabel.text;

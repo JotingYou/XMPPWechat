@@ -21,15 +21,15 @@
 // But we still want to leave our log statements for any future debugging,
 // and to allow other developers to trace the implementation (which is a great learning tool).
 // 
-// So we use primitive logging macros around NSLog.
-// We maintain the NS prefix on the macros to be explicit about the fact that we're using NSLog.
+// So we use primitive logging macros around YJLog.
+// We maintain the NS prefix on the macros to be explicit about the fact that we're using YJLog.
 
 #define LOG_LEVEL 2
 
-#define NSLogError(frmt, ...)    do{ if(LOG_LEVEL >= 1) NSLog((frmt), ##__VA_ARGS__); } while(0)
-#define NSLogWarn(frmt, ...)     do{ if(LOG_LEVEL >= 2) NSLog((frmt), ##__VA_ARGS__); } while(0)
-#define NSLogInfo(frmt, ...)     do{ if(LOG_LEVEL >= 3) NSLog((frmt), ##__VA_ARGS__); } while(0)
-#define NSLogVerbose(frmt, ...)  do{ if(LOG_LEVEL >= 4) NSLog((frmt), ##__VA_ARGS__); } while(0)
+#define YJLogError(frmt, ...)    do{ if(LOG_LEVEL >= 1) YJLog((frmt), ##__VA_ARGS__); } while(0)
+#define YJLogWarn(frmt, ...)     do{ if(LOG_LEVEL >= 2) YJLog((frmt), ##__VA_ARGS__); } while(0)
+#define YJLogInfo(frmt, ...)     do{ if(LOG_LEVEL >= 3) YJLog((frmt), ##__VA_ARGS__); } while(0)
+#define YJLogVerbose(frmt, ...)  do{ if(LOG_LEVEL >= 4) YJLog((frmt), ##__VA_ARGS__); } while(0)
 
 // Xcode does NOT natively support colors in the Xcode debugging console.
 // You'll need to install the XcodeColors plugin to see colors in the Xcode console.
@@ -737,7 +737,7 @@ static DDTTYLogger *sharedInstance;
 		CGFloat distance = sqrtf(powf(r-inR, 2.0f) + powf(g-inG, 2.0f) + powf(b-inB, 2.0f));
 	#endif
 		
-		NSLogVerbose(@"DDTTYLogger: %3lu : %.3f,%.3f,%.3f & %.3f,%.3f,%.3f = %.6f",
+		YJLogVerbose(@"DDTTYLogger: %3lu : %.3f,%.3f,%.3f & %.3f,%.3f,%.3f = %.6f",
 					 (unsigned long)i, inR, inG, inB, r, g, b, distance);
 		
 		if (distance < lowestDistance)
@@ -745,7 +745,7 @@ static DDTTYLogger *sharedInstance;
 			bestIndex = i;
 			lowestDistance = distance;
 			
-			NSLogVerbose(@"DDTTYLogger: New best index = %lu", (unsigned long)bestIndex);
+			YJLogVerbose(@"DDTTYLogger: New best index = %lu", (unsigned long)bestIndex);
 		}
 		
 		i++;
@@ -797,9 +797,9 @@ static DDTTYLogger *sharedInstance;
 			}
 		}
 		
-		NSLogInfo(@"DDTTYLogger: isaColorTTY = %@", (isaColorTTY ? @"YES" : @"NO"));
-		NSLogInfo(@"DDTTYLogger: isaColor256TTY: %@", (isaColor256TTY ? @"YES" : @"NO"));
-		NSLogInfo(@"DDTTYLogger: isaXcodeColorTTY: %@", (isaXcodeColorTTY ? @"YES" : @"NO"));
+		YJLogInfo(@"DDTTYLogger: isaColorTTY = %@", (isaColorTTY ? @"YES" : @"NO"));
+		YJLogInfo(@"DDTTYLogger: isaColor256TTY: %@", (isaColor256TTY ? @"YES" : @"NO"));
+		YJLogInfo(@"DDTTYLogger: isaXcodeColorTTY: %@", (isaXcodeColorTTY ? @"YES" : @"NO"));
 		
 		sharedInstance = [[DDTTYLogger alloc] init];
 	}
@@ -936,7 +936,7 @@ static DDTTYLogger *sharedInstance;
 		                                                        flag:mask
 		                                                     context:ctxt];
 		
-		NSLogInfo(@"DDTTYLogger: newColorProfile: %@", newColorProfile);
+		YJLogInfo(@"DDTTYLogger: newColorProfile: %@", newColorProfile);
 		
 		NSUInteger i = 0;
 		for (DDTTYLoggerColorProfile *colorProfile in colorProfilesArray)
@@ -985,7 +985,7 @@ static DDTTYLogger *sharedInstance;
 		                                                        flag:0
 		                                                     context:0];
 		
-		NSLogInfo(@"DDTTYLogger: newColorProfile: %@", newColorProfile);
+		YJLogInfo(@"DDTTYLogger: newColorProfile: %@", newColorProfile);
 		
 		[colorProfilesDict setObject:newColorProfile forKey:tag];
 	}};
@@ -1245,7 +1245,7 @@ static DDTTYLogger *sharedInstance;
 		}
 		else
 		{
-			// The log message is unformatted, so apply standard NSLog style formatting.
+			// The log message is unformatted, so apply standard YJLog style formatting.
 			
 			int len;
 			

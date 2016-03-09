@@ -149,10 +149,10 @@ singleton_implementation(YJXMPPTool)
      //设置登录JID
      }*/
     YJAccount *account = [YJAccount shareAccount];
-//    NSLog(@"self.isRegisterOperation==%d",self.isRegisterOperation);
+//    YJLog(@"self.isRegisterOperation==%d",self.isRegisterOperation);
     if (self.isRegisterOperation) {//注册
         NSString *registerUser = account.regisAct;
-//        NSLog(@"#####################account=%@,password=%@",account.regisAct,account.reginsPsd);
+//        YJLog(@"#####################account=%@,password=%@",account.regisAct,account.reginsPsd);
         
         myJid = [XMPPJID jidWithUser:registerUser domain:account.domain resource:nil];
     }else{//登录操作
@@ -173,9 +173,9 @@ singleton_implementation(YJXMPPTool)
     // 缺少必要的参数时就会发起连接失败 ? 没有设置jid
     [_xmppStream connectWithTimeout:XMPPStreamTimeoutNone error:&error];
     if (error) {
-        NSLog(@"%@",error);
+        YJLog(@"%@",error);
     }else{
-        NSLog(@"发起连接成功");
+        YJLog(@"发起连接成功");
     }
     
 }
@@ -186,7 +186,7 @@ singleton_implementation(YJXMPPTool)
     NSString *pwd = [YJAccount shareAccount].loginPsd;
     [_xmppStream authenticateWithPassword:pwd error:&error];
     if (error) {
-        NSLog(@"%@",error);
+        YJLog(@"%@",error);
     }
 }
 
@@ -194,7 +194,7 @@ singleton_implementation(YJXMPPTool)
 -(void)sendOnline{
     //XMPP框架，已经把所有的指令封闭成对象
     XMPPPresence *presence = [XMPPPresence presence];
-    NSLog(@"%@",presence);
+//    YJLog(@"%@",presence);
     [_xmppStream sendElement:presence];
 }
 
@@ -210,13 +210,13 @@ singleton_implementation(YJXMPPTool)
 #pragma mark -XMPPStream的代理
 #pragma mark 连接建立成功
 -(void)xmppStreamDidConnect:(XMPPStream *)sender{
-    NSLog(@"连接建立成功");
+    YJLog(@"连接建立成功");
     if (self.isRegisterOperation) {//注册
         NSError *error = nil;
         NSString *reigsterPwd = [YJAccount shareAccount].reginsPsd;
         [_xmppStream registerWithPassword:reigsterPwd error:&error];
         if (error) {
-            NSLog(@"%@",error);
+            YJLog(@"%@",error);
         }
     }else{//登录
         [self sendPwdToHost];
@@ -227,12 +227,12 @@ singleton_implementation(YJXMPPTool)
 #pragma mark 与服务器断开连接
 -(void)xmppStreamDidDisconnect:(XMPPStream *)sender withError:(NSError *)error{
     
-    NSLog(@"与服务器断开连接%@",error);
+    YJLog(@"与服务器断开连接%@",error);
 }
 #pragma mark 登录成功
 -(void)xmppStreamDidAuthenticate:(XMPPStream *)sender{
     //WCLog(@"%s",__func__);
-    NSLog(@"登录成功");
+    YJLog(@"登录成功");
     [self sendOnline];
     
     //回调resultBlock
@@ -245,7 +245,7 @@ singleton_implementation(YJXMPPTool)
 
 #pragma mark 登录失败
 -(void)xmppStream:(XMPPStream *)sender didNotAuthenticate:(DDXMLElement *)error{
-    NSLog(@"登录失败%@",error);
+    YJLog(@"登录失败%@",error);
     //回调resultBlock
     if (_resultBlock) {
         _resultBlock(XMPPResultTypeLoginFailure);
@@ -254,7 +254,7 @@ singleton_implementation(YJXMPPTool)
 
 #pragma mark 注册成功
 -(void)xmppStreamDidRegister:(XMPPStream *)sender{
-    NSLog(@"注册成功");
+    YJLog(@"注册成功");
     //CZLog
     //    WCLog(@"abc");
     
@@ -266,7 +266,7 @@ singleton_implementation(YJXMPPTool)
 
 #pragma mark 注册失败
 -(void)xmppStream:(XMPPStream *)sender didNotRegister:(DDXMLElement *)error{
-    NSLog(@"注册失败 %@",error);
+    YJLog(@"注册失败 %@",error);
     if (_resultBlock) {
         _resultBlock(XMPPResultTypeRegisterFailure);
     }

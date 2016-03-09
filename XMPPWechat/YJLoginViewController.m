@@ -101,21 +101,21 @@
 //-(void)stream:(NSStream *)aStream handleEvent:(NSStreamEvent)eventCode{
 //    switch (eventCode) {
 //        case NSStreamEventOpenCompleted:
-//            NSLog(@"%@",aStream);
-//            NSLog(@"连接成功 通道打开");
+//            YJLog(@"%@",aStream);
+//            YJLog(@"连接成功 通道打开");
 //            break;
 //        case NSStreamEventHasBytesAvailable:
-//            NSLog(@"数据可读");
+//            YJLog(@"数据可读");
 //            [self readData];
 //            break;
 //        case NSStreamEventHasSpaceAvailable:
-//            NSLog(@"可以发送数据");
+//            YJLog(@"可以发送数据");
 //            break;
 //        case NSStreamEventErrorOccurred:
-//            NSLog(@"发生错误");
+//            YJLog(@"发生错误");
 //            break;
 //        case NSStreamEventEndEncountered:
-//            NSLog(@"成功断开连接");
+//            YJLog(@"成功断开连接");
 //            break;
 //            
 //        default:
@@ -133,7 +133,7 @@
 //     // 把缓冲区里的实现字节数转成字符串
 //    NSString *receiveStr=[[NSString alloc]initWithBytes:buf length:len
 // encoding:NSUTF8StringEncoding];
-//    NSLog(@"%@",receiveStr);
+//    YJLog(@"%@",receiveStr);
 //}
 - (void)viewDidLoad {
     [super viewDidLoad];

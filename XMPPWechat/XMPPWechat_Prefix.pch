@@ -1,0 +1,23 @@
+//
+//  XMPPWechat_Prefix.pch
+//  XMPPWechat
+//
+//  Created by 姚家庆 on 16/3/9.
+//  Copyright © 2016年 姚家庆. All rights reserved.
+//
+
+#ifndef XMPPWechat_Prefix_pch
+#define XMPPWechat_Prefix_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#ifdef __OBJC__
+
+#ifdef DEBUG
+#define YJLog(...) NSLog(@"%s\n %@ \n\n",__func__,[NSString stringWithFormat:__VA_ARGS__])
+#else
+
+#endif
+
+#endif
+#endif /* XMPPWechat_Prefix_pch */
