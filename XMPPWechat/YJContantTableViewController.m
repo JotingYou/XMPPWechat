@@ -7,16 +7,57 @@
 //
 
 #import "YJContantTableViewController.h"
+#import "XMPPRoster.h"
+#import "XMPPRosterCoreDataStorage.h"
+#import "YJXMPPTool.h"
+@interface YJContantTableViewController ()<NSFetchedResultsControllerDelegate>
+@property (nonatomic,strong) NSArray *friends;
+@property (nonatomic,strong) NSFetchedResultsController *fetchedResultController;
+@property (nonatomic,strong) XMPPStream *xmppStream;
+@property (nonatomic,strong) XMPPRosterCoreDataStorage *rosterStorage;
+@property (nonatomic,strong) XMPPRoster *roster;
 
-@interface YJContantTableViewController ()
 
 @end
 
 @implementation YJContantTableViewController
+#pragma mark -*****懒加载*****-
 
+-(NSArray*)friends{
+    if (!_friends) {
+        _friends=self.fetchedResultController.fetchedObjects;
+    }
+    
+    return _friends;
+}
+-(void)loadFriends{
+   
+    //1.添加上下文
+    NSManagedObjectContext *rosterContext=[YJXMPPTool sharedYJXMPPTool].rosterStorage.mainThreadManagedObjectContext;
+    //2.请求查询好友信息
+    NSFetchRequest *request=[NSFetchRequest fetchRequestWithEntityName:@"XMPPUserCoreDataStorageObject"];
+    // 3.设置过滤和排序
+    NSSortDescriptor *sort=[NSSortDescriptor sortDescriptorWithKey:@"displayName" ascending:YES];
+    request.sortDescriptors=@[sort];
+    // 过滤当前登录用户的好友
+    NSPredicate *pre=[NSPredicate predicateWithFormat:@"subscription != %@",@"none"];
+    request.predicate=pre;
+    //3.执行请求
+    //3.1创建结果控制器
+    // 数据库查询，如果数据很多，会放在子线程查询
+    // 移动客户端的数据库里数据不会很多，所以很多数据库的查询操作都主线程
+    self.fetchedResultController=[[NSFetchedResultsController alloc]initWithFetchRequest:request managedObjectContext:rosterContext sectionNameKeyPath:nil cacheName:nil];
+    self.fetchedResultController.delegate=self;
+    
+
+    NSError *err=nil;
+    [self.fetchedResultController performFetch:&err];
+//    YJLog(@"self.fetchedResultController.fetchedObjects=%@",self.fetchedResultController.fetchedObjects);
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self loadFriends];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -30,24 +71,44 @@
 }
 
 //#pragma mark - Table view data source
-//
+////
 //- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//#warning Incomplete implementation, return the number of sections
-//    return 0;
-//}
 //
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//#warning Incomplete implementation, return the number of rows
-//    return 0;
+//    return 1;
 //}
-//
+////
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    YJLog(@"self.friends.count=%ld",self.friends.count);
+    
+
+    return self.friends.count;
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellID=@"contantCell";
+    static NSString *cellID=@"contactCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
+    XMPPUserCoreDataStorageObject *friend=self.friends[indexPath.row];
+    if (friend.photo) {
+        cell.imageView.image=friend.photo;
+    }else{
+        cell.imageView.image=[UIImage imageNamed:@"46"];
+    }
+    cell.textLabel.text=friend.displayName;
+    switch ([friend.sectionNum integerValue]) {
+        case 0:
+            cell.detailTextLabel.text=@"在线";
+            break;
+        case 1:
+            cell.detailTextLabel.text = @"离开";
+            break;
+        case 2:
+            cell.detailTextLabel.text = @"离线";
+            break;
     
-    
-    
+        default:
+            break;
+    }
     return cell;
 }
 
