@@ -11,53 +11,50 @@
 #import "XMPPRosterCoreDataStorage.h"
 #import "YJXMPPTool.h"
 @interface YJContantTableViewController ()<NSFetchedResultsControllerDelegate>
-@property (nonatomic,strong) NSArray *friends;
 @property (nonatomic,strong) NSFetchedResultsController *fetchedResultController;
-@property (nonatomic,strong) XMPPStream *xmppStream;
-@property (nonatomic,strong) XMPPRosterCoreDataStorage *rosterStorage;
-@property (nonatomic,strong) XMPPRoster *roster;
+//@property (nonatomic,strong) XMPPStream *xmppStream;
+//@property (nonatomic,strong) XMPPRosterCoreDataStorage *rosterStorage;
+//@property (nonatomic,strong) XMPPRoster *roster;
 
 
 @end
 
 @implementation YJContantTableViewController
+
 #pragma mark -*****懒加载*****-
 
--(NSArray*)friends{
-    if (!_friends) {
-        _friends=self.fetchedResultController.fetchedObjects;
-    }
-    
-    return _friends;
-}
--(void)loadFriends{
-   
-    //1.添加上下文
-    NSManagedObjectContext *rosterContext=[YJXMPPTool sharedYJXMPPTool].rosterStorage.mainThreadManagedObjectContext;
-    //2.请求查询好友信息
-    NSFetchRequest *request=[NSFetchRequest fetchRequestWithEntityName:@"XMPPUserCoreDataStorageObject"];
-    // 3.设置过滤和排序
-    NSSortDescriptor *sort=[NSSortDescriptor sortDescriptorWithKey:@"displayName" ascending:YES];
-    request.sortDescriptors=@[sort];
-    // 过滤当前登录用户的好友
-    NSPredicate *pre=[NSPredicate predicateWithFormat:@"subscription != %@",@"none"];
-    request.predicate=pre;
-    //3.执行请求
-    //3.1创建结果控制器
-    // 数据库查询，如果数据很多，会放在子线程查询
-    // 移动客户端的数据库里数据不会很多，所以很多数据库的查询操作都主线程
-    self.fetchedResultController=[[NSFetchedResultsController alloc]initWithFetchRequest:request managedObjectContext:rosterContext sectionNameKeyPath:nil cacheName:nil];
-    self.fetchedResultController.delegate=self;
-    
 
-    NSError *err=nil;
-    [self.fetchedResultController performFetch:&err];
-//    YJLog(@"self.fetchedResultController.fetchedObjects=%@",self.fetchedResultController.fetchedObjects);
-    
+-(NSFetchedResultsController *)fetchedResultController{
+    if (!_fetchedResultController) {
+        //1.添加上下文
+        NSManagedObjectContext *rosterContext=[YJXMPPTool sharedYJXMPPTool].rosterStorage.mainThreadManagedObjectContext;
+        //2.请求查询好友信息
+        NSFetchRequest *request=[NSFetchRequest fetchRequestWithEntityName:@"XMPPUserCoreDataStorageObject"];
+        // 3.设置过滤和排序
+        NSSortDescriptor *sort=[NSSortDescriptor sortDescriptorWithKey:@"displayName" ascending:YES];
+        request.sortDescriptors=@[sort];
+        // 过滤当前登录用户的好友
+        NSPredicate *pre=[NSPredicate predicateWithFormat:@"subscription != %@",@"none"];
+        request.predicate=pre;
+        //3.执行请求
+        //3.1创建结果控制器
+        // 数据库查询，如果数据很多，会放在子线程查询
+        // 移动客户端的数据库里数据不会很多，所以很多数据库的查询操作都主线程
+        _fetchedResultController=[[NSFetchedResultsController alloc]initWithFetchRequest:request managedObjectContext:rosterContext sectionNameKeyPath:nil cacheName:nil];
+        _fetchedResultController.delegate=self;
+        
+        
+        NSError *err=nil;
+        [_fetchedResultController performFetch:&err];
+
+    }
+    return _fetchedResultController;
 }
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self loadFriends];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -69,30 +66,42 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-//#pragma mark - Table view data source
+#pragma mark -数据内容改变
+-(void)controllerDidChangeContent:(NSFetchedResultsController *)controller{
+    [self.tableView reloadData];
+}
+#pragma mark - Table view data source
 ////
 //- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 //
 //    return 1;
 //}
 ////
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    XMPPUserCoreDataStorageObject *user=self.fetchedResultController.fetchedObjects[indexPath.row];
+    if (editingStyle==UITableViewCellEditingStyleDelete) {
+        [[YJXMPPTool sharedYJXMPPTool].roster removeUser:user.jid];
+    }
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    YJLog(@"self.friends.count=%ld",self.friends.count);
+    YJLog(@"self.friends.count=%ld",self.fetchedResultController.fetchedObjects.count);
     
 
-    return self.friends.count;
+    return self.fetchedResultController.fetchedObjects.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellID=@"contactCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
-    XMPPUserCoreDataStorageObject *friend=self.friends[indexPath.row];
+    XMPPUserCoreDataStorageObject *friend=self.fetchedResultController.fetchedObjects[indexPath.row];
+    //设置头像
     if (friend.photo) {
         cell.imageView.image=friend.photo;
     }else{
-        cell.imageView.image=[UIImage imageNamed:@"46"];
+//        cell.imageView.image=[UIImage imageNamed:@"46"];
+        NSData *imageData=[[YJXMPPTool sharedYJXMPPTool].avatar photoDataForJID:friend.jid];
+        cell.imageView.image=[UIImage imageWithData:imageData];
     }
     cell.textLabel.text=friend.displayName;
     switch ([friend.sectionNum integerValue]) {

@@ -255,8 +255,7 @@ singleton_implementation(YJXMPPTool)
 #pragma mark 注册成功
 -(void)xmppStreamDidRegister:(XMPPStream *)sender{
     YJLog(@"注册成功");
-    //CZLog
-    //    WCLog(@"abc");
+
     
     
     if (_resultBlock) {

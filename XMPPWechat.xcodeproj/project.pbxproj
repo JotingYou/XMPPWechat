@@ -181,9 +181,9 @@
 		3EC006491C8DAC070049507C /* YJMeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC006481C8DAC070049507C /* YJMeTableViewController.m */; };
 		3EC0064C1C8DBCFF0049507C /* YJInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0064B1C8DBCFF0049507C /* YJInfoViewController.m */; };
 		3EC006511C8E9F2E0049507C /* YJEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC006501C8E9F2E0049507C /* YJEditViewController.m */; };
-		3EC0065A1C8FF6360049507C /* YJContant.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC006591C8FF6360049507C /* YJContant.m */; };
 		3EC006691C90087C0049507C /* YJContantTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC006681C90087C0049507C /* YJContantTableViewController.m */; };
 		3EC0066C1C9008980049507C /* YJAddContantViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0066B1C9008980049507C /* YJAddContantViewController.m */; };
+		3EEBB1591C969D49007D06EA /* YJChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EEBB1581C969D49007D06EA /* YJChatViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -559,12 +559,12 @@
 		3EC0064F1C8E9F2E0049507C /* YJEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJEditViewController.h; sourceTree = "<group>"; };
 		3EC006501C8E9F2E0049507C /* YJEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJEditViewController.m; sourceTree = "<group>"; };
 		3EC006561C8FEFEB0049507C /* XMPPWechat_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPWechat_Prefix.pch; sourceTree = "<group>"; };
-		3EC006581C8FF6360049507C /* YJContant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJContant.h; sourceTree = "<group>"; };
-		3EC006591C8FF6360049507C /* YJContant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJContant.m; sourceTree = "<group>"; };
 		3EC006671C90087C0049507C /* YJContantTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJContantTableViewController.h; sourceTree = "<group>"; };
 		3EC006681C90087C0049507C /* YJContantTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJContantTableViewController.m; sourceTree = "<group>"; };
 		3EC0066A1C9008980049507C /* YJAddContantViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJAddContantViewController.h; sourceTree = "<group>"; };
 		3EC0066B1C9008980049507C /* YJAddContantViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJAddContantViewController.m; sourceTree = "<group>"; };
+		3EEBB1571C969D49007D06EA /* YJChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJChatViewController.h; sourceTree = "<group>"; };
+		3EEBB1581C969D49007D06EA /* YJChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJChatViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -662,8 +662,6 @@
 		3E430F401C8A9DF300456CD7 /* models */ = {
 			isa = PBXGroup;
 			children = (
-				3EC006581C8FF6360049507C /* YJContant.h */,
-				3EC006591C8FF6360049507C /* YJContant.m */,
 				3E5D7AEB1C8D4357007F22C1 /* YJAccount.h */,
 				3E5D7AEC1C8D4357007F22C1 /* YJAccount.m */,
 			);
@@ -1640,6 +1638,8 @@
 				3EC006681C90087C0049507C /* YJContantTableViewController.m */,
 				3EC0066A1C9008980049507C /* YJAddContantViewController.h */,
 				3EC0066B1C9008980049507C /* YJAddContantViewController.m */,
+				3EEBB1571C969D49007D06EA /* YJChatViewController.h */,
+				3EEBB1581C969D49007D06EA /* YJChatViewController.m */,
 			);
 			name = Contant;
 			sourceTree = "<group>";
@@ -1866,6 +1866,7 @@
 				3E4317211C8AA06000456CD7 /* DDList.m in Sources */,
 				3E43172E1C8AA06000456CD7 /* DispatchQueueLogFormatter.m in Sources */,
 				3E4317801C8ABF6400456CD7 /* SDWebImageCompat.m in Sources */,
+				3EEBB1591C969D49007D06EA /* YJChatViewController.m in Sources */,
 				3E4317501C8ABF4A00456CD7 /* UITextField+WF.m in Sources */,
 				3E4316C51C8AA06000456CD7 /* XMPPParser.m in Sources */,
 				3E43174E1C8ABF4A00456CD7 /* UIScreen+WF.m in Sources */,
@@ -1938,7 +1939,6 @@
 				3E4316CE1C8AA06000456CD7 /* XMPPResourceCoreDataStorageObject.m in Sources */,
 				3E4317841C8ABF6400456CD7 /* SDWebImageManager.m in Sources */,
 				3E4316E31C8AA06000456CD7 /* XMPPRoomMessageHybridCoreDataStorageObject.m in Sources */,
-				3EC0065A1C8FF6360049507C /* YJContant.m in Sources */,
 				3EC006511C8E9F2E0049507C /* YJEditViewController.m in Sources */,
 				3E4317171C8AA06000456CD7 /* XMPPAutoTime.m in Sources */,
 				3E4316C61C8AA06000456CD7 /* XMPPPresence.m in Sources */,
