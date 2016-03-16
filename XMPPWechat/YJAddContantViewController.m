@@ -36,7 +36,7 @@
             [[YJXMPPTool sharedYJXMPPTool].roster subscribePresenceToUser:jid];
             
             [MBProgressHUD showSuccess:@"请求已经发送"];
-        [self.navigationController popViewControllerAnimated:YES];
+        [self.navigationController popToRootViewControllerAnimated:YES];
         }
 
     }

@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+@class YJInfoViewController;
+@protocol YJInfoViewControllerDelegate <NSObject>
+@optional
+-(void)YJInfoViewControllerDidChange:(YJInfoViewController*)YJInfoViewController;
 
+@end
 @interface YJInfoViewController : UITableViewController
+@property (nonatomic,weak) id<YJInfoViewControllerDelegate>delegate;
 
 @end

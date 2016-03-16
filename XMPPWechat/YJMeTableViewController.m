@@ -12,7 +12,8 @@
 #import "UIStoryboard+WF.h"
 #import "AppDelegate.h"
 #import "XMPPvCardTemp.h"
-@interface YJMeTableViewController ()
+#import "YJInfoViewController.h"
+@interface YJMeTableViewController ()<YJInfoViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableViewCell *cardCell;
 
 @end
@@ -27,39 +28,51 @@
     //返回登录界面
     [UIStoryboard showInitialVCWithName:@"ConnectView"];
 }
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-//    self.cardCell.imageView.image=[UIImage imageNamed:@"46"];
-//    self.cardCell.textLabel.text=[NSString stringWithFormat:@"%@",[YJAccount shareAccount].loginAct];
-//    self.cardCell.detailTextLabel.text=[NSString stringWithFormat:@"微信号:%@",[YJAccount shareAccount].loginAct];
-    
+-(void)loadData{
     //通过XMPPXMPPvCardTemp获取用户数据
     //0获取名片
     XMPPvCardTemp *vCard=[YJXMPPTool sharedYJXMPPTool].vCard.myvCardTemp;
     //1.获取头像
     if (vCard.photo) {
         self.cardCell.imageView.image=[UIImage imageWithData:vCard.photo];
-
+        
     }else{
         self.cardCell.imageView.image=[UIImage imageNamed:@"46"];
     }
-
+    
     //2.获取昵称
     if(vCard.nickname){
         self.cardCell.textLabel.text=vCard.nickname;
     }else{
-       self.cardCell.textLabel.text=@"请设置昵称";
+        self.cardCell.textLabel.text=@"请设置昵称";
     }
     //3.微信号
     self.cardCell.detailTextLabel.text=[NSString stringWithFormat:@"微信号:%@",[YJAccount shareAccount].loginAct];
+
+    
+}
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self loadData];
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+#pragma mark -实现YJInfoViewController代理
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    id destVC=segue.destinationViewController;
+    if ([destVC isKindOfClass:[YJInfoViewController class]]) {
+        YJInfoViewController *infoVC=destVC;
+        infoVC.delegate=self;
+    }
+}
+-(void)YJInfoViewControllerDidChange:(YJInfoViewController *)YJInfoViewController{
+    [self loadData];
+    
+}
 #pragma mark - Table view data source
 
 //- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

@@ -161,6 +161,7 @@ singleton_implementation(YJXMPPTool)
     }
     
     _xmppStream.myJID = myJid;
+    NSLog(@"myJid=%@",myJid);
     
     // 2.设置主机地址
     _xmppStream.hostName = account.host;
@@ -213,8 +214,8 @@ singleton_implementation(YJXMPPTool)
     YJLog(@"连接建立成功");
     if (self.isRegisterOperation) {//注册
         NSError *error = nil;
-        NSString *reigsterPwd = [YJAccount shareAccount].reginsPsd;
-        [_xmppStream registerWithPassword:reigsterPwd error:&error];
+        NSString *reigsterPsd = [YJAccount shareAccount].reginsPsd;
+        [_xmppStream registerWithPassword:reigsterPsd error:&error];
         if (error) {
             YJLog(@"%@",error);
         }

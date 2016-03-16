@@ -23,6 +23,12 @@
 @end
 
 @implementation YJInfoViewController
+- (IBAction)goBack:(id)sender {
+    if ([self.delegate respondsToSelector:@selector(YJInfoViewControllerDidChange:)]) {
+        [self.delegate YJInfoViewControllerDidChange:self];
+    }
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

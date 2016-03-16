@@ -25,6 +25,7 @@
     }
     //读取输入内容
     [YJAccount shareAccount].regisAct=self.txtAccount.text;
+    YJLog(@"[YJAccount shareAccount].regisAct=%@",[YJAccount shareAccount].regisAct);
     [YJAccount shareAccount].reginsPsd=self.txtPassword.text;
     
 //    [[YJAccount shareAccount] saveToSandBox];

@@ -10,8 +10,11 @@
 #import "XMPPRoster.h"
 #import "XMPPRosterCoreDataStorage.h"
 #import "YJXMPPTool.h"
-@interface YJContantTableViewController ()<NSFetchedResultsControllerDelegate>
-@property (nonatomic,strong) NSFetchedResultsController *fetchedResultController;
+#import "YJAccount.h"
+#import "YJChatViewController.h"
+@interface YJContantTableViewController ()<NSFetchedResultsControllerDelegate,UINavigationControllerDelegate>{
+    NSFetchedResultsController *_fetchedResultController;
+}
 //@property (nonatomic,strong) XMPPStream *xmppStream;
 //@property (nonatomic,strong) XMPPRosterCoreDataStorage *rosterStorage;
 //@property (nonatomic,strong) XMPPRoster *roster;
@@ -24,8 +27,8 @@
 #pragma mark -*****懒加载*****-
 
 
--(NSFetchedResultsController *)fetchedResultController{
-    if (!_fetchedResultController) {
+-(void)loadFriend{
+    
         //1.添加上下文
         NSManagedObjectContext *rosterContext=[YJXMPPTool sharedYJXMPPTool].rosterStorage.mainThreadManagedObjectContext;
         //2.请求查询好友信息
@@ -47,14 +50,13 @@
         NSError *err=nil;
         [_fetchedResultController performFetch:&err];
 
-    }
-    return _fetchedResultController;
+    
 }
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self loadFriend];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -78,23 +80,23 @@
 //}
 ////
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
-    XMPPUserCoreDataStorageObject *user=self.fetchedResultController.fetchedObjects[indexPath.row];
+    XMPPUserCoreDataStorageObject *user=_fetchedResultController.fetchedObjects[indexPath.row];
     if (editingStyle==UITableViewCellEditingStyleDelete) {
         [[YJXMPPTool sharedYJXMPPTool].roster removeUser:user.jid];
     }
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    YJLog(@"self.friends.count=%ld",self.fetchedResultController.fetchedObjects.count);
+    YJLog(@"self.friends.count=%ld",_fetchedResultController.fetchedObjects.count);
     
 
-    return self.fetchedResultController.fetchedObjects.count;
+    return _fetchedResultController.fetchedObjects.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellID=@"contactCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
-    XMPPUserCoreDataStorageObject *friend=self.fetchedResultController.fetchedObjects[indexPath.row];
+    XMPPUserCoreDataStorageObject *friend=_fetchedResultController.fetchedObjects[indexPath.row];
     //设置头像
     if (friend.photo) {
         cell.imageView.image=friend.photo;
@@ -120,7 +122,17 @@
     }
     return cell;
 }
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    XMPPJID *friend=[_fetchedResultController.fetchedObjects[indexPath.row] jid];
+    [self performSegueWithIdentifier:@"toChatViewSegue" sender:friend];
+}
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    id destContro=segue.destinationViewController;
+    if ([destContro isKindOfClass:[YJChatViewController class]]) {
+        YJChatViewController *chatVC=destContro;
+        chatVC.friendJid=sender;
+    }
+}
 
 /*
 // Override to support conditional editing of the table view.
