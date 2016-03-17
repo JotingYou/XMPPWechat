@@ -756,12 +756,21 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="chatCell" id="egy-y1-Gsb">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="chatCell" textLabel="Z1s-j6-7eg" style="IBUITableViewCellStyleDefault" id="egy-y1-Gsb">
                                         <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="egy-y1-Gsb" id="cNR-sr-OSj">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Z1s-j6-7eg">
+                                                    <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
@@ -774,9 +783,9 @@
                                 <rect key="frame" x="0.0" y="555" width="600" height="45"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y5D-fK-Vy0">
-                                        <rect key="frame" x="8" y="7" width="515" height="30"/>
+                                        <rect key="frame" x="8" y="7" width="485" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="E3E-Ft-FuN"/>
+                                            <constraint firstAttribute="height" constant="30" id="R2V-zr-XRI"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="send"/>
@@ -787,31 +796,45 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EWI-9j-GGN">
                                         <rect key="frame" x="538" y="8" width="46" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="46" id="Emm-33-xDg"/>
-                                            <constraint firstAttribute="height" constant="30" id="Sqs-g8-Ovx"/>
+                                            <constraint firstAttribute="height" constant="30" id="JFw-DC-niS"/>
+                                            <constraint firstAttribute="width" constant="46" id="kZh-0f-pOy"/>
                                         </constraints>
                                         <state key="normal" title="发送"/>
                                         <connections>
                                             <action selector="sendMsg" destination="ZT2-zx-0BG" eventType="touchUpInside" id="51Z-1D-v3Y"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zNe-d6-lRJ">
+                                        <rect key="frame" x="502" y="5" width="35" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="35" id="M2M-08-lqw"/>
+                                            <constraint firstAttribute="height" constant="35" id="ijF-WA-nVE"/>
+                                        </constraints>
+                                        <state key="normal" image="TypeSelectorBtn_Black"/>
+                                        <state key="highlighted" image="TypeSelectorBtnHL_Black"/>
+                                        <connections>
+                                            <action selector="addFile:" destination="ZT2-zx-0BG" eventType="touchUpInside" id="mal-D9-UDT"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="EWI-9j-GGN" secondAttribute="trailing" constant="16" id="B3f-Hb-fwz"/>
-                                    <constraint firstAttribute="height" constant="45" id="K70-kU-K5s"/>
-                                    <constraint firstAttribute="bottom" secondItem="EWI-9j-GGN" secondAttribute="bottom" constant="7" id="LwM-1R-CaQ"/>
-                                    <constraint firstItem="EWI-9j-GGN" firstAttribute="leading" secondItem="y5D-fK-Vy0" secondAttribute="trailing" constant="15" id="XdR-se-xXn"/>
-                                    <constraint firstAttribute="bottom" secondItem="y5D-fK-Vy0" secondAttribute="bottom" constant="8" id="chV-R8-9cZ"/>
-                                    <constraint firstItem="y5D-fK-Vy0" firstAttribute="leading" secondItem="FfZ-xS-hWS" secondAttribute="leading" constant="8" id="dz0-rT-ZNN"/>
+                                    <constraint firstAttribute="trailing" secondItem="EWI-9j-GGN" secondAttribute="trailing" constant="16" id="0Tn-Jh-JLf"/>
+                                    <constraint firstItem="EWI-9j-GGN" firstAttribute="leading" secondItem="zNe-d6-lRJ" secondAttribute="trailing" constant="1" id="CSi-1R-FlB"/>
+                                    <constraint firstAttribute="bottom" secondItem="zNe-d6-lRJ" secondAttribute="bottom" constant="5" id="GQQ-9L-wiu"/>
+                                    <constraint firstAttribute="height" constant="45" id="ctT-y0-2g8"/>
+                                    <constraint firstAttribute="bottom" secondItem="y5D-fK-Vy0" secondAttribute="bottom" constant="8" id="hNq-8S-LB2"/>
+                                    <constraint firstItem="zNe-d6-lRJ" firstAttribute="leading" secondItem="y5D-fK-Vy0" secondAttribute="trailing" constant="9" id="k3A-Pu-POD"/>
+                                    <constraint firstAttribute="bottom" secondItem="EWI-9j-GGN" secondAttribute="bottom" constant="7" id="rNd-hS-H2b"/>
+                                    <constraint firstItem="y5D-fK-Vy0" firstAttribute="leading" secondItem="FfZ-xS-hWS" secondAttribute="leading" constant="8" id="vyD-ZG-ZXK"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="FfZ-xS-hWS" secondAttribute="trailing" constant="-20" id="CJ7-E1-BaJ"/>
-                            <constraint firstItem="FfZ-xS-hWS" firstAttribute="bottom" secondItem="zJm-Q2-ShO" secondAttribute="bottomMargin" id="jIl-jx-gnh"/>
-                            <constraint firstItem="FfZ-xS-hWS" firstAttribute="leading" secondItem="zJm-Q2-ShO" secondAttribute="leadingMargin" constant="-20" id="jKN-qq-hsY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="FfZ-xS-hWS" secondAttribute="trailing" constant="-20" id="90D-ap-vTx"/>
+                            <constraint firstItem="FfZ-xS-hWS" firstAttribute="bottom" secondItem="zJm-Q2-ShO" secondAttribute="bottomMargin" id="PI5-i9-hBf"/>
+                            <constraint firstItem="FfZ-xS-hWS" firstAttribute="leading" secondItem="zJm-Q2-ShO" secondAttribute="leadingMargin" constant="-20" id="moj-9G-azn"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="聊天窗口" id="ocJ-MU-ya3"/>
@@ -828,6 +851,8 @@
     </scenes>
     <resources>
         <image name="46" width="725" height="619"/>
+        <image name="TypeSelectorBtnHL_Black" width="35" height="35"/>
+        <image name="TypeSelectorBtn_Black" width="35" height="35"/>
         <image name="tabbar_contacts" width="27" height="23"/>
         <image name="tabbar_contactsHL" width="27" height="23"/>
         <image name="tabbar_discover" width="23" height="23"/>

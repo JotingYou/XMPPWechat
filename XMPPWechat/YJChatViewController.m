@@ -12,7 +12,7 @@
 #import "UIImageView+WebCache.h"
 #import "YJAccount.h"
 #import "MBProgressHUD+HM.h"
-@interface YJChatViewController ()<UITableViewDataSource,UITableViewDelegate,NSFetchedResultsControllerDelegate,UITextFieldDelegate>{
+@interface YJChatViewController ()<UITableViewDataSource,UITableViewDelegate,NSFetchedResultsControllerDelegate,UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>{
     NSFetchedResultsController *_fetchResultsController;
 }
 @property (weak, nonatomic) IBOutlet UIView *inputView;
@@ -23,6 +23,68 @@
 @end
 
 @implementation YJChatViewController
+#pragma mark -添加附件
+//选择图片
+- (IBAction)addFile:(id)sender {
+    UIAlertController *alertController=[UIAlertController alertControllerWithTitle:@"选择图片" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *cancle=[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    //创建图片选择控制器
+    UIImagePickerController *imgCTR=[[UIImagePickerController alloc]init];
+    imgCTR.delegate=self;
+    imgCTR.allowsEditing=YES;
+    
+    
+    UIAlertAction *takePhoto=[UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        imgCTR.sourceType=UIImagePickerControllerSourceTypeCamera;
+        [self presentViewController:imgCTR animated:YES completion:nil];
+        
+    }];
+    UIAlertAction *choosePhoto=[UIAlertAction actionWithTitle:@"从相册选择" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        imgCTR.sourceType=UIImagePickerControllerSourceTypePhotoLibrary;
+        [self presentViewController:imgCTR animated:YES completion:nil];
+        
+    }];
+    [alertController addAction:cancle];
+    [alertController addAction:takePhoto];
+    [alertController addAction:choosePhoto];
+    [self presentViewController:alertController animated:YES completion:nil];
+    
+}
+//图片选择完成后
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
+    UIImage *img=info[UIImagePickerControllerOriginalImage];
+    [self sendImg:img];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+}
+-(void)sendImg:(UIImage*)img{
+     // 1.1定义文件名 user + 年月日分秒
+    NSDateFormatter *dateFormat=[[NSDateFormatter alloc]init];
+    dateFormat.dateFormat=@"yyyyMMddHHmmss";
+    NSString *currentTime=[dateFormat stringFromDate:[NSDate date]];
+    NSString *imgName=[[YJAccount shareAccount].loginAct stringByAppendingString:currentTime];
+    //1.2拼接上传路径
+    NSString *putURL=[@"http://localhost:8080/imfileserver/Upload/Image/" stringByAppendingString:imgName];
+    YJLog(@"currentTime=%@",putURL);
+    //2.上传成功后，把文件发给openfire服务器
+    HttpTool *httpTool=[[HttpTool alloc]init];
+    //文件以JPG上传，只接收JPG
+    [httpTool uploadData:UIImageJPEGRepresentation(img, 0.75) url:[NSURL URLWithString:putURL] progressBlock:nil completion:^(NSError *error) {
+        if (!error) {
+            XMPPMessage *msg=[XMPPMessage messageWithType:@"chat" to:self.friendJid];
+            [msg addAttributeWithName:@"bodyType" stringValue:@"image"];
+            [msg addBody:putURL];
+            [[YJXMPPTool sharedYJXMPPTool].xmppStream sendElement:msg];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD showSuccess:@"图片发送成功"];
+            });
+        }else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD showError:@"发送失败，请重试"];
+            });
+        }
+    }];
+}
 - (IBAction)sendMsg {
     [self textFieldShouldReturn:self.txtfield];
     [self.view endEditing:YES];
