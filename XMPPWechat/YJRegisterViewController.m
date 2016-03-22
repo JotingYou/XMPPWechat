@@ -10,6 +10,9 @@
 #import "MBProgressHUD+HM.h"
 #import "YJAccount.h"
 #import "YJXMPPTool.h"
+#import "NSString+Hash.h"
+#define hmacKey @"YSJKODOJJEN23344JHHssds"
+
 @interface YJRegisterViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *txtAccount;
 @property (weak, nonatomic) IBOutlet UITextField *txtPassword;
@@ -25,8 +28,8 @@
     }
     //读取输入内容
     [YJAccount shareAccount].regisAct=self.txtAccount.text;
-    YJLog(@"[YJAccount shareAccount].regisAct=%@",[YJAccount shareAccount].regisAct);
-    [YJAccount shareAccount].reginsPsd=self.txtPassword.text;
+
+    [YJAccount shareAccount].reginsPsd=[self.txtPassword.text hmacMD5StringWithKey:hmacKey];
     
 //    [[YJAccount shareAccount] saveToSandBox];
     [MBProgressHUD showMessage:@"正在注册中"];

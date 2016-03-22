@@ -12,9 +12,11 @@
 #import "UIStoryboard+WF.h"
 #import "YJXMPPTool.h"
 #import "YJAccount.h"
+#import "NSString+Hash.h"
 #define kActKey @"act"
 #define kPwdKey @"pwd"
 #define kLoginKey @"login"
+#define hmacKey @"YSJKODOJJEN23344JHHssds"
 @interface YJLoginViewController ()<NSStreamDelegate>{
     NSInputStream *_inputStream;
     NSOutputStream *_outputStream;
@@ -61,9 +63,9 @@
     // 2.登录服务器
     // 2.1把数据缓存到沙盒
     [YJAccount shareAccount].loginAct=self.txtAccount.text;
-    YJLog(@"[YJAccount shareAccount].loginAct=%@",[YJAccount shareAccount].loginAct);
-    [YJAccount shareAccount].loginPsd=self.txtPassword.text;
-    
+    [YJAccount shareAccount].loginPsd=[self.txtPassword.text hmacMD5StringWithKey:hmacKey];
+
+
     // 2.2调用AppDelegate的xmppLogin方法
     
     // ?怎么把appdelegate的登录结果告诉WCLoginViewControllers控制器

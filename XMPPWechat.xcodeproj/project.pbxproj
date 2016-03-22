@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E26A4911CA12306006FFD99 /* NSString+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E26A4901CA12306006FFD99 /* NSString+Hash.m */; };
+		3E26A4941CA127D5006FFD99 /* YJWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E26A4931CA127D5006FFD99 /* YJWebViewController.m */; };
 		3E430F0F1C8A9D1C00456CD7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E430F0E1C8A9D1C00456CD7 /* main.m */; };
 		3E430F121C8A9D1C00456CD7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E430F111C8A9D1C00456CD7 /* AppDelegate.m */; };
 		3E430F151C8A9D1C00456CD7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E430F141C8A9D1C00456CD7 /* ViewController.m */; };
@@ -204,6 +206,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3E26A48F1CA12306006FFD99 /* NSString+Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hash.h"; sourceTree = "<group>"; };
+		3E26A4901CA12306006FFD99 /* NSString+Hash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hash.m"; sourceTree = "<group>"; };
+		3E26A4921CA127D5006FFD99 /* YJWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJWebViewController.h; sourceTree = "<group>"; };
+		3E26A4931CA127D5006FFD99 /* YJWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJWebViewController.m; sourceTree = "<group>"; };
 		3E430F0A1C8A9D1C00456CD7 /* XMPPWechat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XMPPWechat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E430F0E1C8A9D1C00456CD7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3E430F101C8A9D1C00456CD7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -597,6 +603,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3E26A48E1CA12306006FFD99 /* Security */ = {
+			isa = PBXGroup;
+			children = (
+				3E26A48F1CA12306006FFD99 /* NSString+Hash.h */,
+				3E26A4901CA12306006FFD99 /* NSString+Hash.m */,
+			);
+			path = Security;
+			sourceTree = "<group>";
+		};
 		3E430F011C8A9D1C00456CD7 = {
 			isa = PBXGroup;
 			children = (
@@ -699,6 +714,7 @@
 		3E430F441C8A9E1C00456CD7 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				3E26A48E1CA12306006FFD99 /* Security */,
 				3E43175B1C8ABF6400456CD7 /* SDWebImage */,
 				3E4317521C8ABF5800456CD7 /* MBProgessHUD */,
 				3E43173E1C8ABF4A00456CD7 /* Category */,
@@ -1640,6 +1656,8 @@
 				3EC0066B1C9008980049507C /* YJAddContantViewController.m */,
 				3EEBB1571C969D49007D06EA /* YJChatViewController.h */,
 				3EEBB1581C969D49007D06EA /* YJChatViewController.m */,
+				3E26A4921CA127D5006FFD99 /* YJWebViewController.h */,
+				3E26A4931CA127D5006FFD99 /* YJWebViewController.m */,
 			);
 			name = Contant;
 			sourceTree = "<group>";
@@ -1889,6 +1907,7 @@
 				3E4316F21C8AA06000456CD7 /* XMPPvCardTempAdrTypes.m in Sources */,
 				3E4316DE1C8AA06000456CD7 /* XMPPRoomCoreDataStorage.m in Sources */,
 				3E4317041C8AA06000456CD7 /* NSString+XEP_0106.m in Sources */,
+				3E26A4941CA127D5006FFD99 /* YJWebViewController.m in Sources */,
 				3E4316E91C8AA06000456CD7 /* XMPPMUC.m in Sources */,
 				3E4316C91C8AA06000456CD7 /* XMPPCoreDataStorage.m in Sources */,
 				3E4317961C8AC93100456CD7 /* HttpTool.m in Sources */,
@@ -1940,6 +1959,7 @@
 				3E4317841C8ABF6400456CD7 /* SDWebImageManager.m in Sources */,
 				3E4316E31C8AA06000456CD7 /* XMPPRoomMessageHybridCoreDataStorageObject.m in Sources */,
 				3EC006511C8E9F2E0049507C /* YJEditViewController.m in Sources */,
+				3E26A4911CA12306006FFD99 /* NSString+Hash.m in Sources */,
 				3E4317171C8AA06000456CD7 /* XMPPAutoTime.m in Sources */,
 				3E4316C61C8AA06000456CD7 /* XMPPPresence.m in Sources */,
 				3E4316E51C8AA06000456CD7 /* XMPPRoomMemoryStorage.m in Sources */,

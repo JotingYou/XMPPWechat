@@ -29,11 +29,34 @@
                             <outlet property="delegate" destination="gO0-qX-Uwm" id="mKh-us-wQQ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="聊天" id="EYY-gi-TVN"/>
+                    <navigationItem key="navigationItem" title="聊天" id="EYY-gi-TVN">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="hIv-Fh-8Ij">
+                            <connections>
+                                <segue destination="9Qh-H5-nYD" kind="show" id="VUR-iH-tn7"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XZ3-H9-dh2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="491" y="-483"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="hxO-ZL-OQf">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="9Qh-H5-nYD" customClass="YJWebViewController" sceneMemberID="viewController">
+                    <webView key="view" contentMode="scaleToFill" id="Ef3-vN-VS0">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                    </webView>
+                    <connections>
+                        <outlet property="webView" destination="Ef3-vN-VS0" id="Ewp-ib-d9E"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="v3d-wr-6GF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1138" y="-483"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="DFR-Ve-ACp">
@@ -767,7 +790,7 @@
                                                     <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
