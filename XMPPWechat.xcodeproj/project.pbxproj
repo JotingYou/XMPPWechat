@@ -180,6 +180,11 @@
 		3E4317961C8AC93100456CD7 /* HttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4317921C8AC93100456CD7 /* HttpTool.m */; };
 		3E43179D1C8ACAE500456CD7 /* YJXMPPTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E43179C1C8ACAE500456CD7 /* YJXMPPTool.m */; };
 		3E5D7AED1C8D4357007F22C1 /* YJAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5D7AEC1C8D4357007F22C1 /* YJAccount.m */; };
+		3E7BC6D81CA24D5100E2A0A7 /* YJDiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7BC6D71CA24D5100E2A0A7 /* YJDiscoverViewController.m */; };
+		3E7BC6DB1CA2551200E2A0A7 /* YJCreatTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7BC6DA1CA2551200E2A0A7 /* YJCreatTaskViewController.m */; };
+		3E7BC6DE1CA25A8B00E2A0A7 /* YJContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7BC6DD1CA25A8B00E2A0A7 /* YJContentViewController.m */; };
+		3E7BC6E11CA263F600E2A0A7 /* YJToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7BC6E01CA263F600E2A0A7 /* YJToolbar.m */; };
+		3E7BC6E31CA2641600E2A0A7 /* YJToolbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E7BC6E21CA2641600E2A0A7 /* YJToolbar.xib */; };
 		3EC006491C8DAC070049507C /* YJMeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC006481C8DAC070049507C /* YJMeTableViewController.m */; };
 		3EC0064C1C8DBCFF0049507C /* YJInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0064B1C8DBCFF0049507C /* YJInfoViewController.m */; };
 		3EC006511C8E9F2E0049507C /* YJEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC006501C8E9F2E0049507C /* YJEditViewController.m */; };
@@ -558,6 +563,15 @@
 		3E43179C1C8ACAE500456CD7 /* YJXMPPTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJXMPPTool.m; sourceTree = "<group>"; };
 		3E5D7AEB1C8D4357007F22C1 /* YJAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJAccount.h; sourceTree = "<group>"; };
 		3E5D7AEC1C8D4357007F22C1 /* YJAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJAccount.m; sourceTree = "<group>"; };
+		3E7BC6D61CA24D5100E2A0A7 /* YJDiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJDiscoverViewController.h; sourceTree = "<group>"; };
+		3E7BC6D71CA24D5100E2A0A7 /* YJDiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJDiscoverViewController.m; sourceTree = "<group>"; };
+		3E7BC6D91CA2551200E2A0A7 /* YJCreatTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJCreatTaskViewController.h; sourceTree = "<group>"; };
+		3E7BC6DA1CA2551200E2A0A7 /* YJCreatTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJCreatTaskViewController.m; sourceTree = "<group>"; };
+		3E7BC6DC1CA25A8B00E2A0A7 /* YJContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJContentViewController.h; sourceTree = "<group>"; };
+		3E7BC6DD1CA25A8B00E2A0A7 /* YJContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJContentViewController.m; sourceTree = "<group>"; };
+		3E7BC6DF1CA263F600E2A0A7 /* YJToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJToolbar.h; sourceTree = "<group>"; };
+		3E7BC6E01CA263F600E2A0A7 /* YJToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJToolbar.m; sourceTree = "<group>"; };
+		3E7BC6E21CA2641600E2A0A7 /* YJToolbar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YJToolbar.xib; sourceTree = "<group>"; };
 		3EC006471C8DAC070049507C /* YJMeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJMeTableViewController.h; sourceTree = "<group>"; };
 		3EC006481C8DAC070049507C /* YJMeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJMeTableViewController.m; sourceTree = "<group>"; };
 		3EC0064A1C8DBCFF0049507C /* YJInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJInfoViewController.h; sourceTree = "<group>"; };
@@ -677,6 +691,8 @@
 		3E430F401C8A9DF300456CD7 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				3E7BC6DF1CA263F600E2A0A7 /* YJToolbar.h */,
+				3E7BC6E01CA263F600E2A0A7 /* YJToolbar.m */,
 				3E5D7AEB1C8D4357007F22C1 /* YJAccount.h */,
 				3E5D7AEC1C8D4357007F22C1 /* YJAccount.m */,
 			);
@@ -689,6 +705,7 @@
 				3E430F161C8A9D1C00456CD7 /* Main.storyboard */,
 				3E430F1B1C8A9D1C00456CD7 /* LaunchScreen.storyboard */,
 				3E4317371C8AB29700456CD7 /* ConnectView.storyboard */,
+				3E7BC6E21CA2641600E2A0A7 /* YJToolbar.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1542,7 +1559,8 @@
 		3E43173A1C8AB50900456CD7 /* main */ = {
 			isa = PBXGroup;
 			children = (
-				3EC006571C8FF3DA0049507C /* Contant */,
+				3E7BC6E41CA2797E00E2A0A7 /* Contact */,
+				3E7BC6E61CA2799800E2A0A7 /* discover */,
 				3EC0064D1C8E9F090049507C /* ME */,
 			);
 			name = main;
@@ -1632,6 +1650,34 @@
 			name = tool;
 			sourceTree = "<group>";
 		};
+		3E7BC6E41CA2797E00E2A0A7 /* Contact */ = {
+			isa = PBXGroup;
+			children = (
+				3EC006671C90087C0049507C /* YJContantTableViewController.h */,
+				3EC006681C90087C0049507C /* YJContantTableViewController.m */,
+				3EC0066A1C9008980049507C /* YJAddContantViewController.h */,
+				3EC0066B1C9008980049507C /* YJAddContantViewController.m */,
+				3EEBB1571C969D49007D06EA /* YJChatViewController.h */,
+				3EEBB1581C969D49007D06EA /* YJChatViewController.m */,
+			);
+			name = Contact;
+			sourceTree = "<group>";
+		};
+		3E7BC6E61CA2799800E2A0A7 /* discover */ = {
+			isa = PBXGroup;
+			children = (
+				3E26A4921CA127D5006FFD99 /* YJWebViewController.h */,
+				3E26A4931CA127D5006FFD99 /* YJWebViewController.m */,
+				3E7BC6D61CA24D5100E2A0A7 /* YJDiscoverViewController.h */,
+				3E7BC6D71CA24D5100E2A0A7 /* YJDiscoverViewController.m */,
+				3E7BC6D91CA2551200E2A0A7 /* YJCreatTaskViewController.h */,
+				3E7BC6DA1CA2551200E2A0A7 /* YJCreatTaskViewController.m */,
+				3E7BC6DC1CA25A8B00E2A0A7 /* YJContentViewController.h */,
+				3E7BC6DD1CA25A8B00E2A0A7 /* YJContentViewController.m */,
+			);
+			name = discover;
+			sourceTree = "<group>";
+		};
 		3EC0064D1C8E9F090049507C /* ME */ = {
 			isa = PBXGroup;
 			children = (
@@ -1645,21 +1691,6 @@
 				3EC006501C8E9F2E0049507C /* YJEditViewController.m */,
 			);
 			name = ME;
-			sourceTree = "<group>";
-		};
-		3EC006571C8FF3DA0049507C /* Contant */ = {
-			isa = PBXGroup;
-			children = (
-				3EC006671C90087C0049507C /* YJContantTableViewController.h */,
-				3EC006681C90087C0049507C /* YJContantTableViewController.m */,
-				3EC0066A1C9008980049507C /* YJAddContantViewController.h */,
-				3EC0066B1C9008980049507C /* YJAddContantViewController.m */,
-				3EEBB1571C969D49007D06EA /* YJChatViewController.h */,
-				3EEBB1581C969D49007D06EA /* YJChatViewController.m */,
-				3E26A4921CA127D5006FFD99 /* YJWebViewController.h */,
-				3E26A4931CA127D5006FFD99 /* YJWebViewController.m */,
-			);
-			name = Contant;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1774,6 +1805,7 @@
 				3E4317341C8AA06000456CD7 /* build-libidn.sh in Resources */,
 				3E430F1D1C8A9D1C00456CD7 /* LaunchScreen.storyboard in Resources */,
 				3E430F1A1C8A9D1C00456CD7 /* Assets.xcassets in Resources */,
+				3E7BC6E31CA2641600E2A0A7 /* YJToolbar.xib in Resources */,
 				3E43172F1C8AA06000456CD7 /* README.txt in Resources */,
 				3E430F181C8A9D1C00456CD7 /* Main.storyboard in Resources */,
 				3E4317591C8ABF5800456CD7 /* MBProgressHUD.bundle in Resources */,
@@ -1855,6 +1887,7 @@
 				3E4316F31C8AA06000456CD7 /* XMPPvCardTempBase.m in Sources */,
 				3E4316FD1C8AA06000456CD7 /* XMPPIQ+XEP_0066.m in Sources */,
 				3E4317201C8AA06000456CD7 /* NSXMLElement+XEP_0335.m in Sources */,
+				3E7BC6D81CA24D5100E2A0A7 /* YJDiscoverViewController.m in Sources */,
 				3E4316E81C8AA06000456CD7 /* XMPPMessage+XEP0045.m in Sources */,
 				3E4316FC1C8AA06000456CD7 /* TURNSocket.m in Sources */,
 				3E4317861C8ABF6400456CD7 /* UIButton+WebCache.m in Sources */,
@@ -1881,6 +1914,7 @@
 				3E4316B91C8AA06000456CD7 /* XMPPDigestMD5Authentication.m in Sources */,
 				3E4316CF1C8AA06000456CD7 /* XMPPRoster.xcdatamodel in Sources */,
 				3E4317071C8AA06000456CD7 /* XMPPCapsCoreDataStorageObject.m in Sources */,
+				3E7BC6DB1CA2551200E2A0A7 /* YJCreatTaskViewController.m in Sources */,
 				3E4317211C8AA06000456CD7 /* DDList.m in Sources */,
 				3E43172E1C8AA06000456CD7 /* DispatchQueueLogFormatter.m in Sources */,
 				3E4317801C8ABF6400456CD7 /* SDWebImageCompat.m in Sources */,
@@ -1906,6 +1940,7 @@
 				3E4316E01C8AA06000456CD7 /* XMPPRoomOccupantCoreDataStorageObject.m in Sources */,
 				3E4316F21C8AA06000456CD7 /* XMPPvCardTempAdrTypes.m in Sources */,
 				3E4316DE1C8AA06000456CD7 /* XMPPRoomCoreDataStorage.m in Sources */,
+				3E7BC6E11CA263F600E2A0A7 /* YJToolbar.m in Sources */,
 				3E4317041C8AA06000456CD7 /* NSString+XEP_0106.m in Sources */,
 				3E26A4941CA127D5006FFD99 /* YJWebViewController.m in Sources */,
 				3E4316E91C8AA06000456CD7 /* XMPPMUC.m in Sources */,
@@ -1960,6 +1995,7 @@
 				3E4316E31C8AA06000456CD7 /* XMPPRoomMessageHybridCoreDataStorageObject.m in Sources */,
 				3EC006511C8E9F2E0049507C /* YJEditViewController.m in Sources */,
 				3E26A4911CA12306006FFD99 /* NSString+Hash.m in Sources */,
+				3E7BC6DE1CA25A8B00E2A0A7 /* YJContentViewController.m in Sources */,
 				3E4317171C8AA06000456CD7 /* XMPPAutoTime.m in Sources */,
 				3E4316C61C8AA06000456CD7 /* XMPPPresence.m in Sources */,
 				3E4316E51C8AA06000456CD7 /* XMPPRoomMemoryStorage.m in Sources */,
