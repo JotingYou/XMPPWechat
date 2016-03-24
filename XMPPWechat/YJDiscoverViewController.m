@@ -7,7 +7,7 @@
 //
 
 #import "YJDiscoverViewController.h"
-
+#import "YJContentViewController.h"
 @interface YJDiscoverViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @end
@@ -18,7 +18,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
-
+-(void)YJContentViewController:(YJContentViewController*)ContentViewController didFinishedPublish:(id)sender{
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

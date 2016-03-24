@@ -21,6 +21,9 @@
 @end
 
 @implementation YJContentViewController
+- (IBAction)pop:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 -(YJToolbar *)toolbar{
     if (!_toolbar) {
         YJToolbar *toolbar=[[YJToolbar alloc]init];
@@ -34,6 +37,9 @@
     [defaults setObject:self.txt.text forKey:kDetail];
     [defaults synchronize];
     [self dismissViewControllerAnimated:YES completion:nil];
+    if ([self.delegate respondsToSelector:@selector(YJContentViewController:didFinishedPublish:)]) {
+        [self.delegate YJContentViewController:self didFinishedPublish:nil];
+    }
 }
 
 - (void)viewDidLoad {

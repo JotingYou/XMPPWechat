@@ -15,6 +15,9 @@
 @end
 
 @implementation YJEditViewController
+- (IBAction)pop:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 - (IBAction)save:(id)sender {
     self.cell.detailTextLabel.text=self.editText.text;
     if ([self.delegate respondsToSelector:@selector(YJEditViewController:didfinished:)]) {

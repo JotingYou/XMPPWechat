@@ -29,9 +29,9 @@
         }
     }
 }
--(BOOL)prefersStatusBarHidden{
-    return YES;
-}
+//-(BOOL)prefersStatusBarHidden{
+//    return YES;
+//}
 - (IBAction)cancle:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }

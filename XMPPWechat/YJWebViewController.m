@@ -14,9 +14,7 @@
 @end
 
 @implementation YJWebViewController
--(BOOL)prefersStatusBarHidden{
-    return YES;
-}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSString *url=@"https://m.baidu.com";

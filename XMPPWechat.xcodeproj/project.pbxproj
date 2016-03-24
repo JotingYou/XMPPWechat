@@ -185,6 +185,8 @@
 		3E7BC6DE1CA25A8B00E2A0A7 /* YJContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7BC6DD1CA25A8B00E2A0A7 /* YJContentViewController.m */; };
 		3E7BC6E11CA263F600E2A0A7 /* YJToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7BC6E01CA263F600E2A0A7 /* YJToolbar.m */; };
 		3E7BC6E31CA2641600E2A0A7 /* YJToolbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E7BC6E21CA2641600E2A0A7 /* YJToolbar.xib */; };
+		3EA9D9461CA2CD2A002883C5 /* NSString+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA9D9451CA2CD2A002883C5 /* NSString+Helper.m */; };
+		3EA9D94C1CA2D08E002883C5 /* YJQcodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA9D94B1CA2D08E002883C5 /* YJQcodeViewController.m */; };
 		3EC006491C8DAC070049507C /* YJMeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC006481C8DAC070049507C /* YJMeTableViewController.m */; };
 		3EC0064C1C8DBCFF0049507C /* YJInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0064B1C8DBCFF0049507C /* YJInfoViewController.m */; };
 		3EC006511C8E9F2E0049507C /* YJEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC006501C8E9F2E0049507C /* YJEditViewController.m */; };
@@ -572,6 +574,10 @@
 		3E7BC6DF1CA263F600E2A0A7 /* YJToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJToolbar.h; sourceTree = "<group>"; };
 		3E7BC6E01CA263F600E2A0A7 /* YJToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJToolbar.m; sourceTree = "<group>"; };
 		3E7BC6E21CA2641600E2A0A7 /* YJToolbar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YJToolbar.xib; sourceTree = "<group>"; };
+		3EA9D9441CA2CD2A002883C5 /* NSString+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Helper.h"; sourceTree = "<group>"; };
+		3EA9D9451CA2CD2A002883C5 /* NSString+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Helper.m"; sourceTree = "<group>"; };
+		3EA9D94A1CA2D08E002883C5 /* YJQcodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJQcodeViewController.h; sourceTree = "<group>"; };
+		3EA9D94B1CA2D08E002883C5 /* YJQcodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJQcodeViewController.m; sourceTree = "<group>"; };
 		3EC006471C8DAC070049507C /* YJMeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJMeTableViewController.h; sourceTree = "<group>"; };
 		3EC006481C8DAC070049507C /* YJMeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJMeTableViewController.m; sourceTree = "<group>"; };
 		3EC0064A1C8DBCFF0049507C /* YJInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJInfoViewController.h; sourceTree = "<group>"; };
@@ -731,6 +737,8 @@
 		3E430F441C8A9E1C00456CD7 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				3EA9D9441CA2CD2A002883C5 /* NSString+Helper.h */,
+				3EA9D9451CA2CD2A002883C5 /* NSString+Helper.m */,
 				3E26A48E1CA12306006FFD99 /* Security */,
 				3E43175B1C8ABF6400456CD7 /* SDWebImage */,
 				3E4317521C8ABF5800456CD7 /* MBProgessHUD */,
@@ -1689,6 +1697,8 @@
 				3EC0064B1C8DBCFF0049507C /* YJInfoViewController.m */,
 				3EC0064F1C8E9F2E0049507C /* YJEditViewController.h */,
 				3EC006501C8E9F2E0049507C /* YJEditViewController.m */,
+				3EA9D94A1CA2D08E002883C5 /* YJQcodeViewController.h */,
+				3EA9D94B1CA2D08E002883C5 /* YJQcodeViewController.m */,
 			);
 			name = ME;
 			sourceTree = "<group>";
@@ -1968,6 +1978,7 @@
 				3E4317291C8AA06000456CD7 /* DDASLLogger.m in Sources */,
 				3E4316F01C8AA06000456CD7 /* XMPPvCardTemp.m in Sources */,
 				3E4316D71C8AA06000456CD7 /* XMPPIQ+JabberRPC.m in Sources */,
+				3EA9D9461CA2CD2A002883C5 /* NSString+Helper.m in Sources */,
 				3E43174D1C8ABF4A00456CD7 /* UIImage+WF.m in Sources */,
 				3E4316D31C8AA06000456CD7 /* XMPPRosterMemoryStorage.m in Sources */,
 				3E43179D1C8ACAE500456CD7 /* YJXMPPTool.m in Sources */,
@@ -1991,6 +2002,7 @@
 				3E430F0F1C8A9D1C00456CD7 /* main.m in Sources */,
 				3E43171B1C8AA06000456CD7 /* XMPPAttentionModule.m in Sources */,
 				3E4316CE1C8AA06000456CD7 /* XMPPResourceCoreDataStorageObject.m in Sources */,
+				3EA9D94C1CA2D08E002883C5 /* YJQcodeViewController.m in Sources */,
 				3E4317841C8ABF6400456CD7 /* SDWebImageManager.m in Sources */,
 				3E4316E31C8AA06000456CD7 /* XMPPRoomMessageHybridCoreDataStorageObject.m in Sources */,
 				3EC006511C8E9F2E0049507C /* YJEditViewController.m in Sources */,

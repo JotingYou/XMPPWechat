@@ -11,6 +11,7 @@
 #import "YJXMPPTool.h"
 #import "YJAccount.h"
 #import "YJEditViewController.h"
+#import "YJQcodeViewController.h"
 @interface YJInfoViewController ()<UINavigationControllerDelegate,YJEditViewControllerDelegate,UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *iconImg;
 @property (weak, nonatomic) IBOutlet UITableViewCell *nicknameCell;
@@ -179,6 +180,15 @@
         editVC.cell=sender;
         editVC.delegate=self;
     }
+        if([destVC isKindOfClass:[YJQcodeViewController class]]){
+            XMPPvCardTemp *vCard=[YJXMPPTool sharedYJXMPPTool].vCard.myvCardTemp;
+            YJQcodeViewController *qVC=destVC;
+            qVC.nickname=vCard.nickname;
+            qVC.jid=[YJAccount shareAccount].loginAct;
+            qVC.icon=[UIImage imageWithData:vCard.photo];
+            qVC.address=vCard.middleName;
+    }
+    
 }
 
 

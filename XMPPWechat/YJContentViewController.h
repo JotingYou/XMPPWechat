@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+@class YJContentViewController;
+@protocol YJContentViewControllerDelegate <NSObject>
+@optional
+-(void)YJContentViewController:(YJContentViewController*)ContentViewController didFinishedPublish:(id)sender;
 
+@end
 @interface YJContentViewController : UIViewController
+@property (nonatomic,weak) id<YJContentViewControllerDelegate>delegate;
 
 @end

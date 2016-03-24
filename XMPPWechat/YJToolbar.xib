@@ -13,11 +13,13 @@
             <items>
                 <barButtonItem style="plain" systemItem="flexibleSpace" id="ufX-Ls-lMY"/>
                 <barButtonItem tag="1" title="@" id="6yw-sj-jYF">
+                    <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <action selector="itemDidClicked:" destination="Qp4-jt-HKc" id="vPf-BE-Neo"/>
                     </connections>
                 </barButtonItem>
-                <barButtonItem tag="2" title="图" id="DNm-7q-7Rt">
+                <barButtonItem tag="2" image="038" id="DNm-7q-7Rt">
+                    <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <action selector="itemDidClicked:" destination="Qp4-jt-HKc" id="M4t-Nh-aBV"/>
                     </connections>
@@ -26,4 +28,7 @@
             <point key="canvasLocation" x="390" y="264"/>
         </toolbar>
     </objects>
+    <resources>
+        <image name="038" width="20" height="20"/>
+    </resources>
 </document>
