@@ -7,34 +7,52 @@
 //
 
 #import "YJDiscoverViewController.h"
-//#import "YJCreatTaskViewController.h"
-//#import "XMPPvCardTemp.h"
+#import "YJCellFrame.h"
+#import "YJDiscoverTableViewCell.h"
 #import "MJRefresh.h"
 #import "YJTask.h"
-//#import "XMPP.h"
-#import "XMPPJID.h"
-#import "YJXMPPTool.h"
-#import "YJAccount.h"
+//#import "XMPPJID.h"
+//#import "YJXMPPTool.h"
+//#import "YJAccount.h"
 @interface YJDiscoverViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic,strong) NSArray *tasks;
 @property (nonatomic,copy) NSString *filePath;
+@property (nonatomic,strong) NSArray *cellFrames;
 
 @end
 
 @implementation YJDiscoverViewController
 #pragma mark 懒加载
+-(NSArray *)cellFrames{
+    if (!_cellFrames) {
+        NSMutableArray *arrayM=[NSMutableArray array];
+        for (YJTask *task in self.tasks) {
+            YJCellFrame *cellframe=[YJCellFrame cellFrameWithModel:task];
+            [arrayM addObject:cellframe];
+        }
+        _cellFrames=arrayM;
+    }
+    return _cellFrames;
+}
 -(NSString *)filePath{
     if (!_filePath) {
         NSString *doc=[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)firstObject];
         _filePath=[doc stringByAppendingPathComponent:@"tasks.plist"];
     }
-    NSLog(@"_filePath=%@",_filePath);
     return _filePath;
 }
 -(NSArray *)tasks{
     if (!_tasks) {
         NSArray *array=[NSArray arrayWithContentsOfFile:self.filePath];
+        if (!array.count) {
+            NSString *tmpPath=[[NSBundle mainBundle]pathForResource:@"tasks.plist" ofType:nil];
+            array=[NSArray arrayWithContentsOfFile:tmpPath];
+            NSLog(@"tmpPath=%@",tmpPath);
+        }else{
+            NSLog(@"self.filePath=%@",self.filePath);
+        }
+        
         NSMutableArray *arrayM=[NSMutableArray array];
         for (NSDictionary *dict in array) {
             YJTask *task =[YJTask taskWithDictionary:dict];
@@ -55,6 +73,7 @@
             // 结束刷新
             NSLog(@"刷新中");
             self.tasks=nil;
+            self.cellFrames=nil;
             [self.tableView reloadData];
             [tableView.mj_header endRefreshing];
         });
@@ -70,48 +89,25 @@
 }
 #pragma mark -实现tableview数据源方法
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSLog(@"self.tasks.count=%ld",self.tasks.count);
     return self.tasks.count;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *ID=@"discoverCell";
-    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:ID];
-    YJTask *task=self.tasks[indexPath.row];
-    cell.textLabel.text=task.title;
-    cell.detailTextLabel.text=task.detail;
-    //获取数据
-//    XMPPvCardTemp *myvCard=[YJXMPPTool sharedYJXMPPTool].vCard.myvCardTemp;
-    //获取头像
-    XMPPJID *jid=[XMPPJID jidWithUser:task.account domain:[YJAccount shareAccount].domain resource:nil];
-    NSLog(@"jid=%@",jid);
-    NSData *imageData=[[YJXMPPTool sharedYJXMPPTool].avatar photoDataForJID:jid];
-    cell.imageView.image=[UIImage imageWithData:imageData];
+
+    YJDiscoverTableViewCell *cell=[YJDiscoverTableViewCell discoverCellWithtableView:tableView];
+    [cell discoverCellWithcellFrame:self.cellFrames[indexPath.row]];
     return cell;
 }
-
-#pragma mark - Navigation
-//-(void)YJCreatTaskViewControllerDidFinished:(YJCreatTaskViewController *)creatVC{
-//    self.tasks=nil;
-//    [self.tableView reloadData];
-//}
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    id destVC=segue.destinationViewController;
-//    
-//        if ([destVC isKindOfClass:[YJCreatTaskViewController class]]) {
-//            YJCreatTaskViewController *creatVC=[[YJCreatTaskViewController alloc]init];
-//            creatVC=destVC;
-//            creatVC.delegate=self;
-//            NSLog(@"目标控制器是YJCreatTaskViewController");
-//        }else{
-//            NSLog(@"目标控制器bu是YJCreatTaskViewController");
-//        }
-//        
-//    
-//    
-//}
-
+//设置行高
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    YJCellFrame *cellFrame=self.cellFrames[indexPath.row];
+    return cellFrame.rowHeight;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self performSegueWithIdentifier:@"toDetailSegue" sender:nil];
+}
 
 @end

@@ -1,14 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<!--
-   tasks.plist
-   XMPPWechat
-
-   Created by 姚家庆 on 16/5/22.
-   Copyright (c) 2016年 姚家庆. All rights reserved.
--->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-    <dict>
-    
-    </dict>
+<array>
+	<dict>
+		<key>title</key>
+		<string>如何使用Doit</string>
+		<key>detail</key>
+		<string>任务：发布您需要的任务，其他用户将能看到您发布的内容。</string>
+		<key>imgName</key>
+		<string>start</string>
+		<key>account</key>
+		<string>youjoting</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>什么是Doit</string>
+		<key>detail</key>
+		<string>Doit旨在建立一个高效的交流平台，服务开发者、创业者、企业、投资者，降低沟通成本，提高寻求合作伙伴、投资人与项目的效率。对于开发者而言，能借助本平台努力去实现自己的想法，从而提高全社会的创新热情；对于创业者与投资者而言，使互联网投资变得更加公开便利，从而让更多的人加入到互联网投资中，加快“互联网+”发展；对企业而言，拥有了一个公开透明的外包平台，降低了外包的成本与效率。同时，本应用也提供科研人员寻找合作伙伴的功能。</string>
+		<key>imgName</key>
+		<string>introduction</string>
+		<key>account</key>
+		<string>youjoting</string>
+	</dict>
+</array>
 </plist>

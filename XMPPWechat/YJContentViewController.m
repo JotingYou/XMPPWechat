@@ -12,7 +12,6 @@
 #import "SDImageCache.h"
 #import "YJTask.h"
 #import "YJAccount.h"
-#define kPictures @"pictures"
 #import "MBProgressHUD+HM.h"
 #define kTitle @"title"
 
@@ -22,7 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
 @property (nonatomic,strong) NSMutableArray *tasks;
 @property (nonatomic,copy) NSString *filePath;
-
+@property (nonatomic,copy) NSString *imgName;
 @end
 
 @implementation YJContentViewController
@@ -40,6 +39,14 @@
 //            _filePath=[[NSBundle mainBundle]pathForResource:@"task.plist" ofType:nil];
 //        }
         NSArray *array=[NSArray arrayWithContentsOfFile:self.filePath];
+        if (!array.count) {
+            NSString *tmpPath=[[NSBundle mainBundle]pathForResource:@"tasks.plist" ofType:nil];
+            array=[NSArray arrayWithContentsOfFile:tmpPath];
+            NSLog(@"tmpPath=%@",tmpPath);
+        }else{
+            NSLog(@"self.filePath=%@",self.filePath);
+        }
+
         NSMutableArray *arrayM=[NSMutableArray array];
         for (NSDictionary *dict in array) {
             YJTask *task =[YJTask taskWithDictionary:dict];
@@ -67,9 +74,28 @@
     task.detail=self.txt.text;
     NSString *loginAct=[YJAccount shareAccount].loginAct;
     task.account=loginAct;
-    task.imgName=@"2";
+    //如果有图片
+    if (self.imgView.image) {
+        NSFileManager *fm=[NSFileManager defaultManager];
+        NSData *data;
+        NSDateFormatter *formater = [[ NSDateFormatter alloc] init];
+        NSDate *curDate = [NSDate date];//获取当前日期
+        [formater setDateFormat:@"yyyyMMddHHmmss"];//时间格式
+        NSString * curTime = [formater stringFromDate:curDate];
+        if (UIImagePNGRepresentation(self.imgView.image) == nil) {
+            data = UIImageJPEGRepresentation(self.imgView.image, 1);
+//            self.imgName=[NSString stringWithFormat:@"%@%@.jpg",loginAct,curTime];
+        } else {
+            data = UIImagePNGRepresentation(self.imgView.image);
+//            self.imgName=[NSString stringWithFormat:@"%@%@.png",loginAct,curTime];
+        }
+        self.imgName=[loginAct stringByAppendingString:curTime];
+        NSString *doc=[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)firstObject];
+        NSString *imgPath=[doc stringByAppendingPathComponent:self.imgName];
+        [fm createFileAtPath:imgPath contents:data attributes:nil];
+    }
+    task.imgName=self.imgName;
     [self.tasks addObject:task];
-    NSLog(@"self.tasks.count=%ld",self.tasks.count);
     //将数据存储到沙盒
     NSMutableArray *arrayM=[NSMutableArray array];
     for (YJTask *newTask in self.tasks) {
@@ -79,7 +105,7 @@
     [arrayM writeToFile:self.filePath atomically:YES];
 //    NSData *data=[NSData dataWithContentsOfFile:self.filePath];
 //    NSLog(@"data=%@",data);
-    [self dismissViewControllerAnimated:YES completion:nil];
+        [self dismissViewControllerAnimated:YES completion:nil];
     if ([self.delegate respondsToSelector:@selector(YJContentViewController:didFinishedPublish:)]) {
         [self.delegate YJContentViewController:self didFinishedPublish:nil];
     }
@@ -87,6 +113,7 @@
 
 - (void)viewDidLoad {
     self.txt.inputAccessoryView=self.toolbar;
+    self.imgName=@"";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
@@ -126,8 +153,6 @@
 }
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
     UIImage *img=info[UIImagePickerControllerOriginalImage];
-    SDImageCache *cache=[[SDImageCache alloc]init];
-    [cache storeImage:img forKey:kPictures];
     self.imgView.image=img;
     [self dismissViewControllerAnimated:YES completion:nil];
 }

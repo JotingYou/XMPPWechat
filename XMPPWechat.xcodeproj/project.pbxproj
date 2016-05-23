@@ -208,6 +208,8 @@
 		3EB033821CF06C5A008C1092 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB0336E1CF06C5A008C1092 /* UIScrollView+MJRefresh.m */; };
 		3EB033831CF06C5A008C1092 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB033701CF06C5A008C1092 /* UIView+MJExtension.m */; };
 		3EB033851CF17E4B008C1092 /* tasks.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3EB033841CF17E4B008C1092 /* tasks.plist */; };
+		3EB033881CF2C9C1008C1092 /* YJDiscoverTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB033871CF2C9C1008C1092 /* YJDiscoverTableViewCell.m */; };
+		3EB0338B1CF2CA68008C1092 /* YJCellFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB0338A1CF2CA68008C1092 /* YJCellFrame.m */; };
 		3EC006491C8DAC070049507C /* YJMeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC006481C8DAC070049507C /* YJMeTableViewController.m */; };
 		3EC0064C1C8DBCFF0049507C /* YJInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0064B1C8DBCFF0049507C /* YJInfoViewController.m */; };
 		3EC006511C8E9F2E0049507C /* YJEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC006501C8E9F2E0049507C /* YJEditViewController.m */; };
@@ -640,6 +642,10 @@
 		3EB0336F1CF06C5A008C1092 /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJExtension.h"; sourceTree = "<group>"; };
 		3EB033701CF06C5A008C1092 /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
 		3EB033841CF17E4B008C1092 /* tasks.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = tasks.plist; sourceTree = "<group>"; };
+		3EB033861CF2C9C1008C1092 /* YJDiscoverTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJDiscoverTableViewCell.h; sourceTree = "<group>"; };
+		3EB033871CF2C9C1008C1092 /* YJDiscoverTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJDiscoverTableViewCell.m; sourceTree = "<group>"; };
+		3EB033891CF2CA68008C1092 /* YJCellFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJCellFrame.h; sourceTree = "<group>"; };
+		3EB0338A1CF2CA68008C1092 /* YJCellFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJCellFrame.m; sourceTree = "<group>"; };
 		3EC006471C8DAC070049507C /* YJMeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJMeTableViewController.h; sourceTree = "<group>"; };
 		3EC006481C8DAC070049507C /* YJMeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJMeTableViewController.m; sourceTree = "<group>"; };
 		3EC0064A1C8DBCFF0049507C /* YJInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJInfoViewController.h; sourceTree = "<group>"; };
@@ -766,6 +772,8 @@
 				3E5D7AEC1C8D4357007F22C1 /* YJAccount.m */,
 				3E9858FB1CB4BE0C00769EF0 /* YJTask.h */,
 				3E9858FC1CB4BE0C00769EF0 /* YJTask.m */,
+				3EB033891CF2CA68008C1092 /* YJCellFrame.h */,
+				3EB0338A1CF2CA68008C1092 /* YJCellFrame.m */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -1748,6 +1756,8 @@
 				3E7BC6DA1CA2551200E2A0A7 /* YJCreatTaskViewController.m */,
 				3E7BC6DC1CA25A8B00E2A0A7 /* YJContentViewController.h */,
 				3E7BC6DD1CA25A8B00E2A0A7 /* YJContentViewController.m */,
+				3EB033861CF2C9C1008C1092 /* YJDiscoverTableViewCell.h */,
+				3EB033871CF2C9C1008C1092 /* YJDiscoverTableViewCell.m */,
 			);
 			name = discover;
 			sourceTree = "<group>";
@@ -2122,6 +2132,7 @@
 				3E4316DE1C8AA06000456CD7 /* XMPPRoomCoreDataStorage.m in Sources */,
 				3E7BC6E11CA263F600E2A0A7 /* YJToolbar.m in Sources */,
 				3E4317041C8AA06000456CD7 /* NSString+XEP_0106.m in Sources */,
+				3EB0338B1CF2CA68008C1092 /* YJCellFrame.m in Sources */,
 				3E26A4941CA127D5006FFD99 /* YJWebViewController.m in Sources */,
 				3E4316E91C8AA06000456CD7 /* XMPPMUC.m in Sources */,
 				3E4316C91C8AA06000456CD7 /* XMPPCoreDataStorage.m in Sources */,
@@ -2182,6 +2193,7 @@
 				3E4316CE1C8AA06000456CD7 /* XMPPResourceCoreDataStorageObject.m in Sources */,
 				3EA9D94C1CA2D08E002883C5 /* YJQcodeViewController.m in Sources */,
 				3E4317841C8ABF6400456CD7 /* SDWebImageManager.m in Sources */,
+				3EB033881CF2C9C1008C1092 /* YJDiscoverTableViewCell.m in Sources */,
 				3E4316E31C8AA06000456CD7 /* XMPPRoomMessageHybridCoreDataStorageObject.m in Sources */,
 				3EC006511C8E9F2E0049507C /* YJEditViewController.m in Sources */,
 				3E26A4911CA12306006FFD99 /* NSString+Hash.m in Sources */,
