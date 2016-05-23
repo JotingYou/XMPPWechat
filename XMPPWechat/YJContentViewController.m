@@ -10,19 +10,44 @@
 #import "YJToolbar.h"
 #import "MBProgressHUD+HM.h"
 #import "SDImageCache.h"
-#define kDetail @"detail"
+#import "YJTask.h"
+#import "YJAccount.h"
 #define kPictures @"pictures"
+#import "MBProgressHUD+HM.h"
+#define kTitle @"title"
 
 @interface YJContentViewController ()<YJToolbarDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITextView *txt;
 @property (nonatomic,strong) YJToolbar *toolbar;
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
+@property (nonatomic,strong) NSMutableArray *tasks;
+@property (nonatomic,copy) NSString *filePath;
 
 @end
 
 @implementation YJContentViewController
-- (IBAction)pop:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+-(NSString *)filePath{
+    if (!_filePath) {
+        NSString *doc=[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)firstObject];
+        _filePath=[doc stringByAppendingPathComponent:@"tasks.plist"];
+    }
+    
+    return _filePath;
+}
+-(NSMutableArray *)tasks{
+    if (!_tasks) {
+//        if (!_filePath) {
+//            _filePath=[[NSBundle mainBundle]pathForResource:@"task.plist" ofType:nil];
+//        }
+        NSArray *array=[NSArray arrayWithContentsOfFile:self.filePath];
+        NSMutableArray *arrayM=[NSMutableArray array];
+        for (NSDictionary *dict in array) {
+            YJTask *task =[YJTask taskWithDictionary:dict];
+            [arrayM addObject:task];
+        }
+        _tasks=arrayM;
+    }
+    return _tasks;
 }
 -(YJToolbar *)toolbar{
     if (!_toolbar) {
@@ -32,10 +57,28 @@
     }
     return _toolbar;
 }
+- (IBAction)goBack:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 - (IBAction)publish:(UIBarButtonItem *)sender {
     NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
-    [defaults setObject:self.txt.text forKey:kDetail];
-    [defaults synchronize];
+    YJTask *task=[[YJTask alloc]init];
+    task.title=[defaults valueForKey:kTitle];
+    task.detail=self.txt.text;
+    NSString *loginAct=[YJAccount shareAccount].loginAct;
+    task.account=loginAct;
+    task.imgName=@"2";
+    [self.tasks addObject:task];
+    NSLog(@"self.tasks.count=%ld",self.tasks.count);
+    //将数据存储到沙盒
+    NSMutableArray *arrayM=[NSMutableArray array];
+    for (YJTask *newTask in self.tasks) {
+        NSDictionary *dict=[NSDictionary dictionaryWithObjects:@[newTask.title,newTask.detail,newTask.imgName,newTask.account] forKeys:@[@"title",@"detail",@"imgName",@"account"]];
+        [arrayM addObject:dict];
+    }
+    [arrayM writeToFile:self.filePath atomically:YES];
+//    NSData *data=[NSData dataWithContentsOfFile:self.filePath];
+//    NSLog(@"data=%@",data);
     [self dismissViewControllerAnimated:YES completion:nil];
     if ([self.delegate respondsToSelector:@selector(YJContentViewController:didFinishedPublish:)]) {
         [self.delegate YJContentViewController:self didFinishedPublish:nil];
@@ -85,7 +128,6 @@
     UIImage *img=info[UIImagePickerControllerOriginalImage];
     SDImageCache *cache=[[SDImageCache alloc]init];
     [cache storeImage:img forKey:kPictures];
-//    NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
     self.imgView.image=img;
     [self dismissViewControllerAnimated:YES completion:nil];
 }

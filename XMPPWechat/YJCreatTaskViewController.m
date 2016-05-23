@@ -8,13 +8,22 @@
 
 #import "YJCreatTaskViewController.h"
 #import "MBProgressHUD+HM.h"
+#import "YJContentViewController.h"
 #define kTitle @"title"
-@interface YJCreatTaskViewController ()<UITextFieldDelegate>
+@interface YJCreatTaskViewController ()<UITextFieldDelegate,YJContentViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *titleTxt;
-
+//@property (nonatomic,copy) NSString *tempPath;
 @end
 
 @implementation YJCreatTaskViewController
+//-(NSString *)tempPath{
+//    if (!_tempPath) {
+//        NSString *doc=[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
+//        _tempPath=[doc stringByAppendingPathComponent:@"temp.plist"];
+//    }
+//    
+//    return _tempPath;
+//}
 - (IBAction)Next:(id)sender {
     if (self.titleTxt.text.length==0) {
         [MBProgressHUD showError:@"请输入标题"];
@@ -35,7 +44,27 @@
 - (IBAction)cancle:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
+#pragma mark 实现代理
+-(void)YJContentViewController:(YJContentViewController *)ContentViewController didFinishedPublish:(id)sender{
+//    [self dismissViewControllerAnimated:YES completion:^{
+////        if ([self.delegate respondsToSelector:@selector(YJCreatTaskViewControllerDidFinished:)]) {
+////            [self.delegate YJCreatTaskViewControllerDidFinished:self];
+//            [self dismissViewControllerAnimated:YES completion:nil];
+//        }
+//    }];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+}
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    id destVC=segue.destinationViewController;
+    if ([destVC isKindOfClass:[YJContentViewController class]]) {
+        YJContentViewController *contVC=[[YJContentViewController alloc]init];
+        contVC=destVC;
+        contVC.delegate=self;
+        
+    }
+}
+#pragma mark 主程序
 - (void)viewDidLoad {
     self.titleTxt.delegate=self;
     [super viewDidLoad];

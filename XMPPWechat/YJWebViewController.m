@@ -7,7 +7,6 @@
 //
 
 #import "YJWebViewController.h"
-
 @interface YJWebViewController ()
 @property (strong, nonatomic) IBOutlet UIWebView *webView;
 

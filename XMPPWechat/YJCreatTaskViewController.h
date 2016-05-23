@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+//@class YJCreatTaskViewController;
+//@protocol YJCreatTaskViewControllerDelegate <NSObject>
+//@optional
+//-(void)YJCreatTaskViewControllerDidFinished:(YJCreatTaskViewController*)creatVC ;
 
+//@end
 @interface YJCreatTaskViewController : UIViewController
+//@property (nonatomic,weak) id<YJCreatTaskViewControllerDelegate>delegate;
 
 @end
