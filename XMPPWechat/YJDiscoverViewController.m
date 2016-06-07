@@ -11,6 +11,7 @@
 #import "YJDiscoverTableViewCell.h"
 #import "MJRefresh.h"
 #import "YJTask.h"
+#import "YJDiscoverDetailViewController.h"
 //#import "XMPPJID.h"
 //#import "YJXMPPTool.h"
 //#import "YJAccount.h"
@@ -48,9 +49,6 @@
         if (!array.count) {
             NSString *tmpPath=[[NSBundle mainBundle]pathForResource:@"tasks.plist" ofType:nil];
             array=[NSArray arrayWithContentsOfFile:tmpPath];
-            NSLog(@"tmpPath=%@",tmpPath);
-        }else{
-            NSLog(@"self.filePath=%@",self.filePath);
         }
         
         NSMutableArray *arrayM=[NSMutableArray array];
@@ -107,7 +105,15 @@
     return cellFrame.rowHeight;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self performSegueWithIdentifier:@"toDetailSegue" sender:nil];
+    YJCellFrame *cellFrame=self.cellFrames[indexPath.row];
+    [self performSegueWithIdentifier:@"toDetailSegue" sender:cellFrame];
 }
-
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    id destVC=segue.destinationViewController;
+    if ([destVC isKindOfClass:[YJDiscoverDetailViewController class]]) {
+        YJDiscoverDetailViewController *detailVC=[[YJDiscoverDetailViewController alloc]init];
+        detailVC=destVC;
+        detailVC.cellFrame=sender;
+    }
+}
 @end

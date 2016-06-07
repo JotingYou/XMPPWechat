@@ -115,6 +115,7 @@
     self.txt.inputAccessoryView=self.toolbar;
     self.imgName=@"";
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view.
 }
 
