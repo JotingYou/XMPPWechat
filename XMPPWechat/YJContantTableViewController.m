@@ -91,21 +91,38 @@
 
     return _fetchedResultController.fetchedObjects.count;
 }
-
-
+/*
+ 调整图片大小
+ **/
+- (UIImage *) scaleFromImage: (UIImage *) image toSize: (CGSize) size
+{
+    UIGraphicsBeginImageContext(size);
+    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellID=@"contactCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
     XMPPUserCoreDataStorageObject *friend=_fetchedResultController.fetchedObjects[indexPath.row];
     //设置头像
+    UIImage *tempImg=[[UIImage alloc]init];
     if (friend.photo) {
-        cell.imageView.image=friend.photo;
+        tempImg=friend.photo;
     }else{
 //        cell.imageView.image=[UIImage imageNamed:@"46"];
         NSData *imageData=[[YJXMPPTool sharedYJXMPPTool].avatar photoDataForJID:friend.jid];
-        cell.imageView.image=[UIImage imageWithData:imageData];
+        tempImg=[UIImage imageWithData:imageData];
     }
-    cell.textLabel.text=friend.displayName;
+    if (!tempImg) {
+        tempImg=[UIImage imageNamed:@"46"];
+    }
+    cell.imageView.image=[self scaleFromImage:tempImg toSize:CGSizeMake(200, 200)];
+    //获得domain位置
+    NSRange range = [friend.displayName rangeOfString:@"@"];
+    //截取domain前字符
+    cell.textLabel.text=[friend.displayName substringToIndex:range.location];
     switch ([friend.sectionNum integerValue]) {
         case 0:
             cell.detailTextLabel.text=@"在线";

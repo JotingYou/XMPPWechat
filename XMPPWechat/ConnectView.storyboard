@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LRL-0M-6yO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LRL-0M-6yO">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
         <scene sceneID="qfh-7N-rSv">
             <objects>
                 <navigationController id="LRL-0M-6yO" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="eWh-Ub-kdl">
+                    <navigationBar key="navigationBar" alpha="0.5" contentMode="scaleToFill" id="eWh-Ub-kdl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                     </navigationBar>
                     <connections>
                         <segue destination="OAI-fD-nzt" kind="relationship" relationship="rootViewController" id="eIb-Sb-moQ"/>
@@ -33,7 +37,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Na-QV-z3u">
+                            <imageView userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg3" translatesAutoresizingMaskIntoConstraints="NO" id="RKv-yc-xax">
+                                <rect key="frame" x="120" y="0.0" width="360" height="600"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="RKv-yc-xax" secondAttribute="height" multiplier="3:5" id="Ayu-ue-r1X"/>
+                                </constraints>
+                            </imageView>
+                            <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Na-QV-z3u">
                                 <rect key="frame" x="163" y="163" width="274" height="154"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="账号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hFZ-S0-8Q8">
@@ -42,12 +52,12 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kDI-Tl-mrK">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="youjoting" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kDI-Tl-mrK">
                                         <rect key="frame" x="81" y="27" width="151" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="feK-sd-yy8">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="xiaoxuan" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="feK-sd-yy8">
                                         <rect key="frame" x="81" y="75" width="151" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -60,20 +70,24 @@
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iWY-cT-d7n">
                                         <rect key="frame" x="181" y="116" width="30" height="30"/>
-                                        <state key="normal" title="登录"/>
+                                        <state key="normal" title="登录">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="login:" destination="OAI-fD-nzt" eventType="touchUpInside" id="UPb-Wc-B8X"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OHY-Na-kRA">
                                         <rect key="frame" x="96" y="116" width="30" height="30"/>
-                                        <state key="normal" title="注册"/>
+                                        <state key="normal" title="注册">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
                                         <connections>
                                             <segue destination="gKC-pm-ZCE" kind="show" id="c40-sc-iPs"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="274" id="GUi-D7-hv0"/>
                                     <constraint firstAttribute="height" constant="154" id="z1U-5l-qmd"/>
@@ -82,7 +96,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="RKv-yc-xax" firstAttribute="centerY" secondItem="UNX-rg-65U" secondAttribute="centerY" id="9Sb-Sn-0Sz"/>
+                            <constraint firstItem="RKv-yc-xax" firstAttribute="top" secondItem="UNX-rg-65U" secondAttribute="topMargin" id="D6a-ge-xW2"/>
+                            <constraint firstItem="6oO-vD-Q7z" firstAttribute="top" secondItem="RKv-yc-xax" secondAttribute="bottom" id="FH4-2R-0fd"/>
                             <constraint firstItem="8Na-QV-z3u" firstAttribute="centerX" secondItem="UNX-rg-65U" secondAttribute="centerX" id="OH7-co-qqY"/>
+                            <constraint firstItem="RKv-yc-xax" firstAttribute="centerX" secondItem="UNX-rg-65U" secondAttribute="centerX" id="PN1-eh-HnZ"/>
                             <constraint firstItem="8Na-QV-z3u" firstAttribute="top" secondItem="f87-Rt-dnG" secondAttribute="bottom" constant="99" id="R8y-rt-Snz"/>
                         </constraints>
                     </view>
@@ -110,7 +128,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MrX-4L-Oz9">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg2" translatesAutoresizingMaskIntoConstraints="NO" id="fDu-aq-xCk">
+                                <rect key="frame" x="120" y="0.0" width="360" height="600"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="fDu-aq-xCk" secondAttribute="height" multiplier="3:5" id="Wog-Dr-0p1"/>
+                                </constraints>
+                            </imageView>
+                            <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MrX-4L-Oz9">
                                 <rect key="frame" x="163" y="163" width="274" height="154"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="账号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mxh-S2-Nve">
@@ -137,13 +161,15 @@
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wMf-qD-yJ7">
                                         <rect key="frame" x="141" y="116" width="30" height="30"/>
-                                        <state key="normal" title="注册"/>
+                                        <state key="normal" title="注册">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
                                         <connections>
                                             <action selector="register:" destination="gKC-pm-ZCE" eventType="touchUpInside" id="9qt-iM-6ZC"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="154" id="4aV-Te-3zX"/>
                                     <constraint firstAttribute="width" constant="274" id="NBp-Xx-TuD"/>
@@ -152,8 +178,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="fDu-aq-xCk" firstAttribute="centerX" secondItem="D2K-qm-wx5" secondAttribute="centerX" id="HCE-Kc-sq9"/>
+                            <constraint firstItem="fDu-aq-xCk" firstAttribute="top" secondItem="D2K-qm-wx5" secondAttribute="topMargin" id="MR5-35-nQC"/>
                             <constraint firstItem="MrX-4L-Oz9" firstAttribute="centerX" secondItem="D2K-qm-wx5" secondAttribute="centerX" id="SBa-CN-hp5"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="fDu-aq-xCk" secondAttribute="bottom" id="dp6-7e-0iX"/>
                             <constraint firstItem="MrX-4L-Oz9" firstAttribute="top" secondItem="Im7-cp-Nee" secondAttribute="bottom" constant="99" id="oKT-pT-D5d"/>
+                            <constraint firstItem="fDu-aq-xCk" firstAttribute="centerY" secondItem="D2K-qm-wx5" secondAttribute="centerY" id="wJj-qt-shM"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -169,4 +199,8 @@
             <point key="canvasLocation" x="73" y="886"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="bg2" width="720" height="1280"/>
+        <image name="bg3" width="720" height="1280"/>
+    </resources>
 </document>

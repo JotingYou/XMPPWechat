@@ -33,23 +33,35 @@
     //0获取名片
     XMPPvCardTemp *vCard=[YJXMPPTool sharedYJXMPPTool].vCard.myvCardTemp;
     //1.获取头像
+    UIImage *img=[UIImage new];
     if (vCard.photo) {
-        self.cardCell.imageView.image=[UIImage imageWithData:vCard.photo];
+        img=[UIImage imageWithData:vCard.photo];
         
     }else{
-        self.cardCell.imageView.image=[UIImage imageNamed:@"46"];
+        img=[UIImage imageNamed:@"46"];
     }
-    
+    self.cardCell.imageView.image=[self scaleFromImage:img toSize:CGSizeMake(700, 600)];
     //2.获取昵称
     if(vCard.nickname){
         self.cardCell.textLabel.text=vCard.nickname;
     }else{
-        self.cardCell.textLabel.text=@"请设置昵称";
+        self.cardCell.textLabel.text=@"无名氏";
     }
     //3.微信号
-    self.cardCell.detailTextLabel.text=[NSString stringWithFormat:@"微信号:%@",[YJAccount shareAccount].loginAct];
+    self.cardCell.detailTextLabel.text=[NSString stringWithFormat:@"账号:%@",[YJAccount shareAccount].loginAct];
 
     
+}
+/*
+ 调整图片大小
+ **/
+- (UIImage *) scaleFromImage: (UIImage *) image toSize: (CGSize) size
+{
+    UIGraphicsBeginImageContext(size);
+    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
