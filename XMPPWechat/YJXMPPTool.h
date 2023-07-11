@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "Singleton.h"
 #import <XMPPFramework/XMPPFramework.h>
-//#import "XMPPIncomingFileTransfer.h"
 
 typedef enum {
     XMPPResultTypeLoginSucess,//登录成功
@@ -50,8 +49,9 @@ singleton_interface(YJXMPPTool)
  */
 @property(assign,nonatomic,getter=isRegisterOperation)BOOL registerOperation;
 
-//@property(strong,nonatomic,readonly)XMPPIncom *msgArchiving;
+@property(strong,nonatomic,readonly)XMPPIncomingFileTransfer *inFileTransfer;
 
+@property(strong,nonatomic,readonly)XMPPOutgoingFileTransfer  *outFileTransfer;
 /**
  *  XMPP用户登录
  */
@@ -67,4 +67,5 @@ singleton_interface(YJXMPPTool)
  */
 -(void)xmppLogout;
 
+-(void)sendFile:(NSData *)data name:(NSString *)name to:(XMPPJID *)jid;
 @end

@@ -19,7 +19,7 @@
  // 默认登录成功是不在线的
  4.发送一个 "在线消息" 给服务器 ->可以通知其它用户你上线
  */
-@interface YJXMPPTool ()<XMPPStreamDelegate>{
+@interface YJXMPPTool ()<XMPPStreamDelegate,XMPPIncomingFileTransferDelegate,XMPPOutgoingFileTransferDelegate>{
     XMPPReconnect *_reconnect;//自动连接模块,由于网络问题，与服务器断开时，它会自己连接服务器
     
     XMPPResultBlock _resultBlock;//结果回调Block
@@ -99,6 +99,18 @@ singleton_implementation(YJXMPPTool)
     // 5.添加 “自动连接” 模块
     _reconnect = [[XMPPReconnect alloc] init];
     [_reconnect activate:_xmppStream];
+    
+    // 接收文件
+    _inFileTransfer = [[XMPPIncomingFileTransfer alloc]initWithDispatchQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)];
+    [_inFileTransfer activate:_xmppStream];
+    [_inFileTransfer addDelegate:self delegateQueue:dispatch_get_main_queue()];
+    //自动接收文件
+    [_inFileTransfer setAutoAcceptFileTransfers:true];
+    
+    // 发送文件
+    _outFileTransfer = [[XMPPOutgoingFileTransfer alloc]initWithDispatchQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)];
+    [_outFileTransfer activate:_xmppStream];
+    [_outFileTransfer addDelegate:self delegateQueue:dispatch_get_main_queue()];
     
     // 设置代理 -
     //#warnning 所有的代理方法都将在子线程被调用
@@ -322,5 +334,89 @@ singleton_implementation(YJXMPPTool)
     [self teardownStream];
 }
 
+-(void)sendFile:(NSData *)data name:(NSString *)name to:(XMPPJID *)jid{
+    NSError *err = nil;
+    [self.outFileTransfer sendData:data named:name toRecipient:jid description:nil error:&err];
+    if(err){
+        NSLog(@"%@",err);
+    }
+}
 @end
 
+@implementation YJXMPPTool(XMPPIncomingFileTransferDelegate)
+
+-(void)xmppIncomingFileTransfer:(XMPPIncomingFileTransfer *)sender didReceiveSIOffer:(XMPPIQ *)offer{
+    NSLog(@"%s",__func__);
+    [self.inFileTransfer acceptSIOffer:offer];
+}
+-(void)xmppIncomingFileTransfer:(XMPPIncomingFileTransfer *)sender didSucceedWithData:(NSData *)data named:(NSString *)name{
+    NSLog(@"%s",__func__);
+    //在这个方法里面，我们通过带外来传输的文件
+
+    //因此我们的消息同步器，不会帮我们自动生成Message,因此我们需要手动存储message
+
+    //根据文件后缀名，判断文件我们是否能够处理，如果不能处理则直接显示。
+
+    //图片 音频 （.wav,.mp3,.mp4)
+
+    NSString *extension = [name pathExtension];
+//    if (![@"wav" isEqualToString:extension]) {
+//        return;
+//    }
+        
+    //创建一个XMPPMessage对象,message必须要有from
+    
+    XMPPMessage *message = [XMPPMessage messageWithType:@"chat" to:sender.xmppStream.myJID];
+    
+    //<span class="s1" style="font-family: 'Comic Sans MS';">给</span><span class="s2" style="font-family: 'Comic Sans MS';">Message</span><span class="s1" style="font-family: 'Comic Sans MS';">添加</span><span class="s2" style="font-family: 'Comic Sans MS';">from</span>
+    
+    [message addAttributeWithName:@"from" stringValue:sender.xmppStream.remoteJID.bare];
+    
+    [message addSubject:@"audio"];
+    
+    NSString *path =  [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    
+    path = [path stringByAppendingPathComponent:[XMPPStream generateUUID]];
+    
+    path = [path stringByAppendingPathExtension:@"wav"];
+    
+    [data writeToFile:path atomically:YES];
+    
+    [message addBody:path.lastPathComponent];
+    
+    [self.msgArchivingStorage archiveMessage:message outgoing:NO xmppStream:self.xmppStream];
+}
+-(void)xmppIncomingFileTransfer:(XMPPIncomingFileTransfer *)sender didFailWithError:(NSError *)error{
+    NSLog(@"%s",__func__);
+}
+@end
+@implementation YJXMPPTool(XMPPOutgoingFileTransferDelegate)
+- (void)xmppOutgoingFileTransferDidSucceed:(XMPPOutgoingFileTransfer *)sender{
+    
+    NSLog(@"%s",__func__);
+    
+    XMPPMessage *message = [XMPPMessage messageWithType:@"chat" to:sender.xmppStream.remoteJID];
+    
+    //将这个文件的发送者添加到message的from
+    
+    [message addAttributeWithName:@"from" stringValue:sender.xmppStream.myJID.bare];
+    
+    [message addSubject:@"audio"];
+    
+    NSString *path =  [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    
+    path = [path stringByAppendingPathComponent:sender.outgoingFileName];
+    
+    [message addBody:path.lastPathComponent];
+    
+    [self.msgArchivingStorage archiveMessage:message outgoing:NO xmppStream:self.xmppStream];
+}
+
+-(void)xmppOutgoingFileTransfer:(XMPPOutgoingFileTransfer *)sender didFailWithError:(NSError *)error{
+    NSLog(@"%s",__func__);
+    if(error){
+        NSLog(@"%@",error);
+    }
+}
+
+@end
