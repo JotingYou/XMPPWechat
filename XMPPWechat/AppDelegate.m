@@ -7,8 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "DDLog.h"
-#import "DDTTYLogger.h"
+#import <CocoaLumberjack/CocoaLumberjack.h>
 #import "YJAccount.h"
 #import "YJXMPPTool.h"
 @interface AppDelegate ()

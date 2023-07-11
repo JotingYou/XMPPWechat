@@ -7,7 +7,7 @@
 //
 
 #import "YJInfoViewController.h"
-#import "XMPPvCardTemp.h"
+#import <XMPPFramework/XMPPFramework.h>
 #import "YJXMPPTool.h"
 #import "YJAccount.h"
 #import "YJEditViewController.h"
@@ -165,7 +165,7 @@
     YJLog(@"nickname=%@",vCard.nickname);
 //    NSMutableArray *temp=[NSMutableArray array];
     vCard.middleName=self.adressCell.detailTextLabel.text;
-    vCard.prefix=self.sexCell.detailTextLabel.text;
+//    vCard.prefix=self.sexCell.detailTextLabel.text;
     vCard.suffix=self.locationCell.detailTextLabel.text;
     vCard.note=self.introduceCell.detailTextLabel.text;
     //上传修改信息

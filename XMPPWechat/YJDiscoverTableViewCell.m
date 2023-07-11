@@ -9,7 +9,7 @@
 #import "YJDiscoverTableViewCell.h"
 #import "YJCellFrame.h"
 #import "YJTask.h"
-#import "XMPPJID.h"
+#import <XMPPFramework/XMPPFramework.h>
 #import "YJXMPPTool.h"
 #import "YJAccount.h"
 @interface YJDiscoverTableViewCell()

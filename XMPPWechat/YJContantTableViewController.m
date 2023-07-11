@@ -7,8 +7,7 @@
 //
 
 #import "YJContantTableViewController.h"
-#import "XMPPRoster.h"
-#import "XMPPRosterCoreDataStorage.h"
+#import <XMPPFramework/XMPPFramework.h>
 #import "YJXMPPTool.h"
 #import "YJAccount.h"
 #import "YJChatViewController.h"

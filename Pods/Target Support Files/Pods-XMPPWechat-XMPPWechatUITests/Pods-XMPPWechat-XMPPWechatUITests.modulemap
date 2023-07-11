@@ -1,0 +1,6 @@
+framework module Pods_XMPPWechat_XMPPWechatUITests {
+  umbrella header "Pods-XMPPWechat-XMPPWechatUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

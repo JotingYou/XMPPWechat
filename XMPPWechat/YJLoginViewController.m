@@ -63,7 +63,7 @@
     // 2.登录服务器
     // 2.1把数据缓存到沙盒
     [YJAccount shareAccount].loginAct=self.txtAccount.text;
-    [YJAccount shareAccount].loginPsd=[self.txtPassword.text hmacMD5StringWithKey:hmacKey];
+    [YJAccount shareAccount].loginPsd=self.txtPassword.text;
 
 
     // 2.2调用AppDelegate的xmppLogin方法

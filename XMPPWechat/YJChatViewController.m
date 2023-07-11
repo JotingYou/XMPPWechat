@@ -137,7 +137,7 @@
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *recuseID=@"chatCell";
+    static NSString *recuseID=@"myCell";
     UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:recuseID ];
     //获取聊天信息
     XMPPMessageArchiving_Message_CoreDataObject *msgObj=_fetchResultsController.fetchedObjects[indexPath.row];

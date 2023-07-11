@@ -11,7 +11,7 @@
 #import "YJAccount.h"
 #import "UIStoryboard+WF.h"
 #import "AppDelegate.h"
-#import "XMPPvCardTemp.h"
+#import <XMPPFramework/XMPPFramework.h>
 #import "YJInfoViewController.h"
 @interface YJMeTableViewController ()<YJInfoViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableViewCell *cardCell;

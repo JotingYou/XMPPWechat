@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 #import "XMPPSASLAuthentication.h"
-#import "GCDAsyncSocket.h"
+@import CocoaAsyncSocket;
 #import "GCDMulticastDelegate.h"
 
 #if TARGET_OS_IPHONE
