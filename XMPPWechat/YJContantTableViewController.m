@@ -37,7 +37,7 @@
         NSSortDescriptor *sort=[NSSortDescriptor sortDescriptorWithKey:@"displayName" ascending:YES];
         request.sortDescriptors=@[sort];
         // 过滤当前登录用户的好友
-        NSPredicate *pre=[NSPredicate predicateWithFormat:@"subscription != %@",@"none"];
+        NSPredicate *pre=[NSPredicate predicateWithFormat:@"displayName != ''"];
         request.predicate=pre;
         //3.执行请求
         //3.1创建结果控制器
@@ -122,7 +122,7 @@
     //获得domain位置
     NSRange range = [friend.displayName rangeOfString:@"@"];
     //截取domain前字符
-    cell.textLabel.text=[friend.displayName substringToIndex:range.location];
+    cell.textLabel.text=friend.displayName;
     switch ([friend.sectionNum integerValue]) {
         case 0:
             cell.detailTextLabel.text=@"在线";

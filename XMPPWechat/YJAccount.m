@@ -10,8 +10,8 @@
 #define kActKey @"act"
 #define kPwdKey @"pwd"
 #define kLoginKey @"login"
-static NSString *domain=@"teacher.local";
-static NSString *host=@"127.0.0.1";
+static NSString *domain=@"safe.com";
+static NSString *host=@"139.196.179.154";
 static int port=5222;
 @implementation YJAccount
 +(instancetype)shareAccount{
