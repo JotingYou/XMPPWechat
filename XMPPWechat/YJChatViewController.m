@@ -12,6 +12,8 @@
 #import "UIImageView+WebCache.h"
 #import "YJAccount.h"
 #import "MBProgressHUD+HM.h"
+#import "XMPPMessage+Utils.h"
+
 @interface YJChatViewController ()<UITableViewDataSource,UITableViewDelegate,NSFetchedResultsControllerDelegate,UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>{
     NSFetchedResultsController *_fetchResultsController;
 }
@@ -62,28 +64,35 @@
     NSDateFormatter *dateFormat=[[NSDateFormatter alloc]init];
     dateFormat.dateFormat=@"yyyyMMddHHmmss";
     NSString *currentTime=[dateFormat stringFromDate:[NSDate date]];
-    NSString *imgName=[[YJAccount shareAccount].loginAct stringByAppendingString:currentTime];
-    //1.2拼接上传路径
-    NSString *putURL=[@"http://localhost:8080/imfileserver/Upload/Image/" stringByAppendingString:imgName];
-    YJLog(@"currentTime=%@",putURL);
-    //2.上传成功后，把文件发给openfire服务器
-    HttpTool *httpTool=[[HttpTool alloc]init];
-    //文件以JPG上传，只接收JPG
-    [httpTool uploadData:UIImageJPEGRepresentation(img, 0.75) url:[NSURL URLWithString:putURL] progressBlock:nil completion:^(NSError *error) {
-        if (!error) {
-            XMPPMessage *msg=[XMPPMessage messageWithType:@"chat" to:self.friendJid];
-            [msg addAttributeWithName:@"bodyType" stringValue:@"image"];
-            [msg addBody:putURL];
-            [[YJXMPPTool sharedYJXMPPTool].xmppStream sendElement:msg];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [MBProgressHUD showSuccess:@"图片发送成功"];
-            });
-        }else{
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [MBProgressHUD showError:@"发送失败，请重试"];
-            });
-        }
-    }];
+    NSString *imgName=[NSString stringWithFormat:@"%@%@.jpeg", [YJAccount shareAccount].loginAct,currentTime];
+    
+//    //1.2拼接上传路径
+//    NSString *putURL=[@"http://localhost:8080/imfileserver/Upload/Image/" stringByAppendingString:imgName];
+//    YJLog(@"currentTime=%@",putURL);
+    NSData *imgData = UIImageJPEGRepresentation(img, 0.75);
+    BOOL res = [[YJXMPPTool sharedYJXMPPTool] sendFile:imgData name:imgName to:self.friendJid];
+    if(res){
+        [MBProgressHUD showSuccess:@"图片发送成功"];
+        XMPPMessage *message = [XMPPMessage messageWithType:@"chat" to:[YJXMPPTool sharedYJXMPPTool].xmppStream.myJID];
+        
+        [message addAttributeWithName:@"from" stringValue:self.friendJid.bare];
+        
+        [message addSubject:@"image"];
+        
+        NSString *path =  [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+        
+        path = [path stringByAppendingPathComponent:[XMPPStream generateUUID]];
+        
+        path = [path stringByAppendingPathExtension:@"jpeg"];
+        
+        [imgData writeToFile:path atomically:YES];
+        
+        [message addBody:path.lastPathComponent];
+        YJLog(@"%@",path);
+        [[YJXMPPTool sharedYJXMPPTool].msgArchivingStorage archiveMessage:message outgoing:NO xmppStream:[YJXMPPTool sharedYJXMPPTool].xmppStream];
+    }else{
+        [MBProgressHUD showError:@"发送失败，请重试"];
+    }
 }
 - (IBAction)sendMsg {
     [self textFieldShouldReturn:self.txtfield];
@@ -114,6 +123,11 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.tableView registerClass:[YJMyChatCell class] forCellReuseIdentifier:[YJMyChatCell reusableIdentifier]];
+    [self.tableView registerClass:[YJOtherChatCell class] forCellReuseIdentifier:[YJOtherChatCell reusableIdentifier]];
+    self.tableView.estimatedRowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedSectionFooterHeight = 0.f;
+    self.tableView.estimatedSectionHeaderHeight = 0.f;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     [self loadChat];
@@ -137,32 +151,40 @@
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *recuseID=@"myCell";
-    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:recuseID ];
     //获取聊天信息
     XMPPMessageArchiving_Message_CoreDataObject *msgObj=_fetchResultsController.fetchedObjects[indexPath.row];
     //获取原始xml数据
     XMPPMessage *msg=msgObj.message;
+    YJLog(@"%@",msg);
+    NSString *recuseID = [YJOtherChatCell reusableIdentifier];;
+    if(msg.isMyMessage){
+        recuseID = [YJMyChatCell reusableIdentifier];
+    }
+    YJChatCell *cell=[tableView dequeueReusableCellWithIdentifier:recuseID ];
+
     //获取附件类型
-    NSString *bodyType=[msg attributeStringValueForName:@"bodyType"];
+    NSString *bodyType= msg.subject;
     //判断类型
     if ([bodyType isEqualToString:@"image"]) {
             //获取文件路径
-            NSString *url=msgObj.body;
-            //显示图片
-    //        [cell.imageView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"46"]];
-            [cell.imageView sd_setImageWithURL:[NSURL URLWithString:url]];
-            cell.textLabel.text=nil;
+            NSString *url=msg.body;
+        NSString *path =  [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+        
+        path = [path stringByAppendingPathComponent:url];
+        let image = [UIImage imageWithContentsOfFile:path];
+        [cell setWithTitle:nil image:image];
+
     }else{
-        cell.textLabel.text=msgObj.body;
-        cell.imageView.image=nil;
-        
-        
+        [cell setWithTitle:msgObj.body image:nil];
+
     }
     return cell;
 }
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     [self.view endEditing:YES];
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return UITableViewAutomaticDimension;
 }
 #pragma mark -实现UITextFiled代理方法
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
@@ -170,9 +192,10 @@
         [MBProgressHUD showError:@"不能发送空消息"];
         return NO;
     }else{
-        NSString *txt=[NSString stringWithFormat:@"%@:%@",[YJAccount shareAccount].loginAct,textField.text];
+        NSString *txt=textField.text;
         //发送内容
         XMPPMessage *msg=[XMPPMessage messageWithType:@"chat" to:self.friendJid];
+        [msg addAttributeWithName:@"from" stringValue:[YJXMPPTool sharedYJXMPPTool].myJID.bare];
         [msg addBody:txt];
         [[YJXMPPTool sharedYJXMPPTool].xmppStream sendElement:msg];
         

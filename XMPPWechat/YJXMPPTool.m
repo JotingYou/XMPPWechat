@@ -8,7 +8,7 @@
 
 #import "YJXMPPTool.h"
 #import "YJAccount.h"
-
+#import "MBProgressHUD+HM.h"
 /* 用户登录流程
  1.初始化XMPPStream
  
@@ -166,14 +166,14 @@ singleton_implementation(YJXMPPTool)
         NSString *registerUser = account.regisAct;
 //        YJLog(@"#####################account=%@,password=%@",account.regisAct,account.reginsPsd);
         
-        myJid = [XMPPJID jidWithUser:registerUser domain:account.domain resource:nil];
+        myJid = [XMPPJID jidWithUser:registerUser domain:account.domain resource:@"phone"];
     }else{//登录操作
         NSString *loginUser = [YJAccount shareAccount].loginAct;
-        myJid = [XMPPJID jidWithUser:loginUser domain:account.domain resource:nil];
+        myJid = [XMPPJID jidWithUser:loginUser domain:account.domain resource:@"phone"];
     }
     
     _xmppStream.myJID = myJid;
-    NSLog(@"myJid=%@",myJid);
+    YJLog(@"myJid=%@",myJid);
     
     // 2.设置主机地址
     _xmppStream.hostName = account.host;
@@ -334,23 +334,33 @@ singleton_implementation(YJXMPPTool)
     [self teardownStream];
 }
 
--(void)sendFile:(NSData *)data name:(NSString *)name to:(XMPPJID *)jid{
+-(BOOL)sendFile:(NSData *)data name:(NSString *)name to:(XMPPJID *)jid{
     NSError *err = nil;
+    if (jid.resource == nil) {
+        jid = [XMPPJID jidWithUser:jid.user domain:jid.domain resource:@"phone"];
+    }
     [self.outFileTransfer sendData:data named:name toRecipient:jid description:nil error:&err];
     if(err){
-        NSLog(@"%@",err);
+        YJLog(@"%@",err);
+        return false;
     }
+    
+    return true;
+}
+
+-(XMPPJID *)myJID{
+    return self.xmppStream.myJID;
 }
 @end
 
 @implementation YJXMPPTool(XMPPIncomingFileTransferDelegate)
 
 -(void)xmppIncomingFileTransfer:(XMPPIncomingFileTransfer *)sender didReceiveSIOffer:(XMPPIQ *)offer{
-    NSLog(@"%s",__func__);
+    YJLog(@"%s",__func__);
     [self.inFileTransfer acceptSIOffer:offer];
 }
 -(void)xmppIncomingFileTransfer:(XMPPIncomingFileTransfer *)sender didSucceedWithData:(NSData *)data named:(NSString *)name{
-    NSLog(@"%s",__func__);
+    YJLog(@"%s",__func__);
     //在这个方法里面，我们通过带外来传输的文件
 
     //因此我们的消息同步器，不会帮我们自动生成Message,因此我们需要手动存储message
@@ -360,40 +370,38 @@ singleton_implementation(YJXMPPTool)
     //图片 音频 （.wav,.mp3,.mp4)
 
     NSString *extension = [name pathExtension];
-//    if (![@"wav" isEqualToString:extension]) {
-//        return;
-//    }
+    if (![@"jpeg" isEqualToString:extension]) {
+        return;
+    }
         
     //创建一个XMPPMessage对象,message必须要有from
     
     XMPPMessage *message = [XMPPMessage messageWithType:@"chat" to:sender.xmppStream.myJID];
     
-    //<span class="s1" style="font-family: 'Comic Sans MS';">给</span><span class="s2" style="font-family: 'Comic Sans MS';">Message</span><span class="s1" style="font-family: 'Comic Sans MS';">添加</span><span class="s2" style="font-family: 'Comic Sans MS';">from</span>
+    [message addAttributeWithName:@"from" stringValue:sender.senderJID.bare];
     
-    [message addAttributeWithName:@"from" stringValue:sender.xmppStream.remoteJID.bare];
-    
-    [message addSubject:@"audio"];
+    [message addSubject:@"image"];
     
     NSString *path =  [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     
     path = [path stringByAppendingPathComponent:[XMPPStream generateUUID]];
     
-    path = [path stringByAppendingPathExtension:@"wav"];
+    path = [path stringByAppendingPathExtension:@"jpeg"];
     
     [data writeToFile:path atomically:YES];
     
     [message addBody:path.lastPathComponent];
-    
+    YJLog(@"%@",path);
     [self.msgArchivingStorage archiveMessage:message outgoing:NO xmppStream:self.xmppStream];
 }
 -(void)xmppIncomingFileTransfer:(XMPPIncomingFileTransfer *)sender didFailWithError:(NSError *)error{
-    NSLog(@"%s",__func__);
+    YJLog(@"%s",__func__);
 }
 @end
 @implementation YJXMPPTool(XMPPOutgoingFileTransferDelegate)
 - (void)xmppOutgoingFileTransferDidSucceed:(XMPPOutgoingFileTransfer *)sender{
     
-    NSLog(@"%s",__func__);
+    YJLog(@"%s",__func__);
     
     XMPPMessage *message = [XMPPMessage messageWithType:@"chat" to:sender.xmppStream.remoteJID];
     
@@ -401,7 +409,7 @@ singleton_implementation(YJXMPPTool)
     
     [message addAttributeWithName:@"from" stringValue:sender.xmppStream.myJID.bare];
     
-    [message addSubject:@"audio"];
+    [message addSubject:@"image"];
     
     NSString *path =  [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     
@@ -410,13 +418,15 @@ singleton_implementation(YJXMPPTool)
     [message addBody:path.lastPathComponent];
     
     [self.msgArchivingStorage archiveMessage:message outgoing:NO xmppStream:self.xmppStream];
+    [MBProgressHUD showSuccess:@"发送成功"];
 }
 
 -(void)xmppOutgoingFileTransfer:(XMPPOutgoingFileTransfer *)sender didFailWithError:(NSError *)error{
-    NSLog(@"%s",__func__);
+    YJLog(@"%s",__func__);
     if(error){
-        NSLog(@"%@",error);
+        YJLog(@"%@",error);
     }
+    [MBProgressHUD showError:@"发送失败，请重试"];
 }
 
 @end

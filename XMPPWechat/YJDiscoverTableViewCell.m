@@ -38,7 +38,7 @@
 -(void)setDataWithModelFrame:(YJCellFrame*)cellFrame{
     YJTask *model=cellFrame.task;
     //设置内容
-    XMPPJID *jid=[XMPPJID jidWithUser:model.account domain:[YJAccount shareAccount].domain resource:nil];
+    XMPPJID *jid=[XMPPJID jidWithUser:model.account domain:[YJAccount shareAccount].domain resource:@"phone"];
     NSLog(@"jid=%@",jid);
     NSData *imageData=[[YJXMPPTool sharedYJXMPPTool].avatar photoDataForJID:jid];
     self.iconView.image=[UIImage imageWithData:imageData];

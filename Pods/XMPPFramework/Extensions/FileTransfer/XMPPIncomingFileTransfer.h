@@ -34,6 +34,7 @@
 */
 - (void)acceptSIOffer:(XMPPIQ *)offer;
 
+- (XMPPJID *)senderJID;
 @end
 
 

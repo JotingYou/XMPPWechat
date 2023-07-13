@@ -10,6 +10,7 @@
 #import <CocoaLumberjack/CocoaLumberjack.h>
 #import "YJAccount.h"
 #import "YJXMPPTool.h"
+#import <LookinServer/LookinServer.h>
 @interface AppDelegate ()
 
 @end

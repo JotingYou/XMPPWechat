@@ -25,7 +25,7 @@
         return;
     }else{
         //将NSString转化为JID
-        XMPPJID *jid=[XMPPJID jidWithUser:user domain:[YJAccount shareAccount].domain resource:nil];
+        XMPPJID *jid=[XMPPJID jidWithUser:user domain:[YJAccount shareAccount].domain resource:@"phone"];
         //判断好友是否存在
         BOOL isexisted=[[YJXMPPTool sharedYJXMPPTool].rosterStorage userExistsWithJID:jid xmppStream:[YJXMPPTool sharedYJXMPPTool].xmppStream];
         if (isexisted) {

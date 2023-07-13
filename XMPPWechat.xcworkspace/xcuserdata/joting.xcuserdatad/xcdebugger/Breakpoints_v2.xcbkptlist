@@ -3,4 +3,118 @@
    uuid = "0D3D57B0-93CD-419C-B5C2-CD9E6FD0CA43"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A120AFE3-3239-4592-8625-39A4FF6F7866"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "XMPPWechat/YJXMPPTool.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "398"
+            endingLineNumber = "398"
+            landmarkName = "-xmppIncomingFileTransfer:didFailWithError:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A120AFE3-3239-4592-8625-39A4FF6F7866 - 76a8f7ac8a76a2b7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[YJXMPPTool(XMPPIncomingFileTransferDelegate) xmppIncomingFileTransfer:didFailWithError:]"
+                  moduleName = "XMPPWechat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joting/Documents/GitHub/XMPPWechat/XMPPWechat/YJXMPPTool.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "394"
+                  endingLineNumber = "394"
+                  offsetFromSymbolStart = "84">
+               </Location>
+               <Location
+                  uuid = "A120AFE3-3239-4592-8625-39A4FF6F7866 - 76a8f7ac8a76a233"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[YJXMPPTool(XMPPIncomingFileTransferDelegate) xmppIncomingFileTransfer:didFailWithError:]"
+                  moduleName = "XMPPWechat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joting/Documents/GitHub/XMPPWechat/XMPPWechat/YJXMPPTool.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "398"
+                  endingLineNumber = "398"
+                  offsetFromSymbolStart = "84">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EB0D24E7-E3B7-4DB9-9942-63959D7D3FFC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "XMPPWechat/YJXMPPTool.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "395"
+            endingLineNumber = "395"
+            landmarkName = "-xmppIncomingFileTransfer:didSucceedWithData:named:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "EB0D24E7-E3B7-4DB9-9942-63959D7D3FFC - 333aa4d379b89622"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[YJXMPPTool(XMPPIncomingFileTransferDelegate) xmppIncomingFileTransfer:didSucceedWithData:named:]"
+                  moduleName = "XMPPWechat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joting/Documents/GitHub/XMPPWechat/XMPPWechat/YJXMPPTool.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "391"
+                  endingLineNumber = "391"
+                  offsetFromSymbolStart = "848">
+               </Location>
+               <Location
+                  uuid = "EB0D24E7-E3B7-4DB9-9942-63959D7D3FFC - 333aa4d379b891ae"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[YJXMPPTool(XMPPIncomingFileTransferDelegate) xmppIncomingFileTransfer:didSucceedWithData:named:]"
+                  moduleName = "XMPPWechat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joting/Documents/GitHub/XMPPWechat/XMPPWechat/YJXMPPTool.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "395"
+                  endingLineNumber = "395"
+                  offsetFromSymbolStart = "848">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FFE054A9-9EDC-47F1-822E-A446A4D87240"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "XMPPWechat/Category/XMPPMessage+Utils.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "-isMyMessage"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

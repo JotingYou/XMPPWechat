@@ -87,9 +87,11 @@
 		3EC006691C90087C0049507C /* YJContantTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC006681C90087C0049507C /* YJContantTableViewController.m */; };
 		3EC0066C1C9008980049507C /* YJAddContantViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0066B1C9008980049507C /* YJAddContantViewController.m */; };
 		3EEBB1591C969D49007D06EA /* YJChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EEBB1581C969D49007D06EA /* YJChatViewController.m */; };
-		611A2889C6BDD775C7508913 /* Pods_XMPPWechat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C44FFAC3634DCF155CF63436 /* Pods_XMPPWechat.framework */; };
-		675025672AF6FB76A7BD9073 /* Pods_XMPPWechat_XMPPWechatUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AA0D286F1458B2D44038411 /* Pods_XMPPWechat_XMPPWechatUITests.framework */; };
-		78697B5F7865B304B38120E6 /* Pods_XMPPWechatTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD763C4E0B7D26D73BD0E314 /* Pods_XMPPWechatTests.framework */; };
+		4BABECE65740D2FFAD8C3BCE /* Pods_XMPPWechatTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1242AFF9A66F59C7A6105EB7 /* Pods_XMPPWechatTests.framework */; };
+		5C20953F2A5FF6E600B0CECE /* YJChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C20953E2A5FF6E600B0CECE /* YJChatCell.swift */; };
+		5CA3606C2A60019000BE2F77 /* XMPPMessage+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA3606B2A60019000BE2F77 /* XMPPMessage+Utils.m */; };
+		CBB248AED97677F007FB6A1C /* Pods_XMPPWechat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A134ABD1AC63DB86A8B8653 /* Pods_XMPPWechat.framework */; };
+		EFC5B90D4B6EBD11CAAF2A9B /* Pods_XMPPWechat_XMPPWechatUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B86E1283963E8314165AB17 /* Pods_XMPPWechat_XMPPWechatUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,10 +112,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1242AFF9A66F59C7A6105EB7 /* Pods_XMPPWechatTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XMPPWechatTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		14D7689093A8ABF5699BE381 /* Pods-XMPPWechatTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XMPPWechatTests.debug.xcconfig"; path = "Target Support Files/Pods-XMPPWechatTests/Pods-XMPPWechatTests.debug.xcconfig"; sourceTree = "<group>"; };
 		1819DE2B2ACCB5911137EE6B /* Pods-XMPPWechat-XMPPWechatUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XMPPWechat-XMPPWechatUITests.debug.xcconfig"; path = "Target Support Files/Pods-XMPPWechat-XMPPWechatUITests/Pods-XMPPWechat-XMPPWechatUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		36A86DE3083D503B918D3A2D /* Pods-XMPPWechat-XMPPWechatUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XMPPWechat-XMPPWechatUITests.release.xcconfig"; path = "Target Support Files/Pods-XMPPWechat-XMPPWechatUITests/Pods-XMPPWechat-XMPPWechatUITests.release.xcconfig"; sourceTree = "<group>"; };
 		384DF871515A3665BEB163B2 /* Pods-XMPPWechatTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XMPPWechatTests.release.xcconfig"; path = "Target Support Files/Pods-XMPPWechatTests/Pods-XMPPWechatTests.release.xcconfig"; sourceTree = "<group>"; };
+		3B86E1283963E8314165AB17 /* Pods_XMPPWechat_XMPPWechatUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XMPPWechat_XMPPWechatUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E11B7391CFABDB000D2F230 /* YJDiscoverDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJDiscoverDetailViewController.h; sourceTree = "<group>"; };
 		3E11B73A1CFABDB000D2F230 /* YJDiscoverDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJDiscoverDetailViewController.m; sourceTree = "<group>"; };
 		3E11B73C1CFAC97100D2F230 /* commends.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = commends.plist; sourceTree = "<group>"; };
@@ -274,10 +278,12 @@
 		3EEBB1571C969D49007D06EA /* YJChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJChatViewController.h; sourceTree = "<group>"; };
 		3EEBB1581C969D49007D06EA /* YJChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJChatViewController.m; sourceTree = "<group>"; };
 		47C5E57EA04FF779F493C38C /* Pods-XMPPWechat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XMPPWechat.debug.xcconfig"; path = "Target Support Files/Pods-XMPPWechat/Pods-XMPPWechat.debug.xcconfig"; sourceTree = "<group>"; };
-		4AA0D286F1458B2D44038411 /* Pods_XMPPWechat_XMPPWechatUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XMPPWechat_XMPPWechatUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		528F78161487850F57815671 /* Pods-XMPPWechat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XMPPWechat.release.xcconfig"; path = "Target Support Files/Pods-XMPPWechat/Pods-XMPPWechat.release.xcconfig"; sourceTree = "<group>"; };
-		C44FFAC3634DCF155CF63436 /* Pods_XMPPWechat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XMPPWechat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FD763C4E0B7D26D73BD0E314 /* Pods_XMPPWechatTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XMPPWechatTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C20953D2A5FF6E500B0CECE /* XMPPWechat-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XMPPWechat-Bridging-Header.h"; sourceTree = "<group>"; };
+		5C20953E2A5FF6E600B0CECE /* YJChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YJChatCell.swift; sourceTree = "<group>"; };
+		5CA3606A2A60019000BE2F77 /* XMPPMessage+Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XMPPMessage+Utils.h"; sourceTree = "<group>"; };
+		5CA3606B2A60019000BE2F77 /* XMPPMessage+Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "XMPPMessage+Utils.m"; sourceTree = "<group>"; };
+		6A134ABD1AC63DB86A8B8653 /* Pods_XMPPWechat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XMPPWechat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -285,7 +291,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				611A2889C6BDD775C7508913 /* Pods_XMPPWechat.framework in Frameworks */,
+				CBB248AED97677F007FB6A1C /* Pods_XMPPWechat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,7 +299,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78697B5F7865B304B38120E6 /* Pods_XMPPWechatTests.framework in Frameworks */,
+				4BABECE65740D2FFAD8C3BCE /* Pods_XMPPWechatTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,7 +307,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				675025672AF6FB76A7BD9073 /* Pods_XMPPWechat_XMPPWechatUITests.framework in Frameworks */,
+				EFC5B90D4B6EBD11CAAF2A9B /* Pods_XMPPWechat_XMPPWechatUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,6 +506,8 @@
 				3E4317491C8ABF4A00456CD7 /* UITextField+WF.m */,
 				3E43174A1C8ABF4A00456CD7 /* UIView+WF.h */,
 				3E43174B1C8ABF4A00456CD7 /* UIView+WF.m */,
+				5CA3606A2A60019000BE2F77 /* XMPPMessage+Utils.h */,
+				5CA3606B2A60019000BE2F77 /* XMPPMessage+Utils.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -577,6 +585,8 @@
 				3EC0066B1C9008980049507C /* YJAddContantViewController.m */,
 				3EEBB1571C969D49007D06EA /* YJChatViewController.h */,
 				3EEBB1581C969D49007D06EA /* YJChatViewController.m */,
+				5C20953E2A5FF6E600B0CECE /* YJChatCell.swift */,
+				5C20953D2A5FF6E500B0CECE /* XMPPWechat-Bridging-Header.h */,
 			);
 			name = Contact;
 			sourceTree = "<group>";
@@ -715,9 +725,9 @@
 		EE9C96B6E6B60E1CE1BB78A5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C44FFAC3634DCF155CF63436 /* Pods_XMPPWechat.framework */,
-				4AA0D286F1458B2D44038411 /* Pods_XMPPWechat_XMPPWechatUITests.framework */,
-				FD763C4E0B7D26D73BD0E314 /* Pods_XMPPWechatTests.framework */,
+				6A134ABD1AC63DB86A8B8653 /* Pods_XMPPWechat.framework */,
+				3B86E1283963E8314165AB17 /* Pods_XMPPWechat_XMPPWechatUITests.framework */,
+				1242AFF9A66F59C7A6105EB7 /* Pods_XMPPWechatTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -733,7 +743,7 @@
 				3E430F061C8A9D1C00456CD7 /* Sources */,
 				3E430F071C8A9D1C00456CD7 /* Frameworks */,
 				3E430F081C8A9D1C00456CD7 /* Resources */,
-				53AACF948C9F0C263A9F925E /* [CP] Embed Pods Frameworks */,
+				47043ED90C862BB3D98C8A69 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -771,7 +781,7 @@
 				3E430F2A1C8A9D1D00456CD7 /* Sources */,
 				3E430F2B1C8A9D1D00456CD7 /* Frameworks */,
 				3E430F2C1C8A9D1D00456CD7 /* Resources */,
-				6E97D716125948B20F57E551 /* [CP] Embed Pods Frameworks */,
+				3EF2DDBB09E9C8D6657F7E5F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -796,6 +806,7 @@
 					3E430F091C8A9D1C00456CD7 = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = BFQM2YX9WF;
+						LastSwiftMigration = 1430;
 					};
 					3E430F221C8A9D1D00456CD7 = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -864,33 +875,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		53AACF948C9F0C263A9F925E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-XMPPWechat/Pods-XMPPWechat-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework",
-				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
-				"${BUILT_PRODUCTS_DIR}/KissXML/KissXML.framework",
-				"${BUILT_PRODUCTS_DIR}/XMPPFramework/XMPPFramework.framework",
-				"${BUILT_PRODUCTS_DIR}/libidn/libidn.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaAsyncSocket.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KissXML.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XMPPFramework.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libidn.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-XMPPWechat/Pods-XMPPWechat-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6E97D716125948B20F57E551 /* [CP] Embed Pods Frameworks */ = {
+		3EF2DDBB09E9C8D6657F7E5F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -900,6 +885,8 @@
 				"${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
 				"${BUILT_PRODUCTS_DIR}/KissXML/KissXML.framework",
+				"${BUILT_PRODUCTS_DIR}/LookinServer/LookinServer.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/XMPPFramework/XMPPFramework.framework",
 				"${BUILT_PRODUCTS_DIR}/libidn/libidn.framework",
 			);
@@ -908,12 +895,44 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaAsyncSocket.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KissXML.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LookinServer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XMPPFramework.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libidn.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-XMPPWechat-XMPPWechatUITests/Pods-XMPPWechat-XMPPWechatUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		47043ED90C862BB3D98C8A69 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-XMPPWechat/Pods-XMPPWechat-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework",
+				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
+				"${BUILT_PRODUCTS_DIR}/KissXML/KissXML.framework",
+				"${BUILT_PRODUCTS_DIR}/LookinServer/LookinServer.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/XMPPFramework/XMPPFramework.framework",
+				"${BUILT_PRODUCTS_DIR}/libidn/libidn.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaAsyncSocket.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KissXML.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LookinServer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XMPPFramework.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libidn.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-XMPPWechat/Pods-XMPPWechat-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B05C0370590261F3B1DACAB7 /* [CP] Check Pods Manifest.lock */ = {
@@ -995,6 +1014,7 @@
 				3E43175A1C8ABF5800456CD7 /* MBProgressHUD.m in Sources */,
 				3E9858FD1CB4BE0C00769EF0 /* YJTask.m in Sources */,
 				3E43178B1C8ABF6400456CD7 /* UIImageView+WebCache.m in Sources */,
+				5C20953F2A5FF6E600B0CECE /* YJChatCell.swift in Sources */,
 				3E43177D1C8ABF6400456CD7 /* MKAnnotationView+WebCache.m in Sources */,
 				3EB033711CF06C5A008C1092 /* MJRefreshAutoFooter.m in Sources */,
 				3EB033821CF06C5A008C1092 /* UIScrollView+MJRefresh.m in Sources */,
@@ -1014,6 +1034,7 @@
 				3E43177E1C8ABF6400456CD7 /* NSData+ImageContentType.m in Sources */,
 				3E43174C1C8ABF4A00456CD7 /* UIButton+WF.m in Sources */,
 				3E11B73B1CFABDB000D2F230 /* YJDiscoverDetailViewController.m in Sources */,
+				5CA3606C2A60019000BE2F77 /* XMPPMessage+Utils.m in Sources */,
 				3E7BC6DB1CA2551200E2A0A7 /* YJCreatTaskViewController.m in Sources */,
 				3EB033791CF06C5A008C1092 /* MJRefreshBackGifFooter.m in Sources */,
 				3EB033831CF06C5A008C1092 /* UIView+MJExtension.m in Sources */,
@@ -1197,6 +1218,7 @@
 			baseConfigurationReference = 47C5E57EA04FF779F493C38C /* Pods-XMPPWechat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = XMPPWechat/XMPPWechat_Prefix.pch;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
@@ -1210,6 +1232,9 @@
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_BUNDLE_IDENTIFIER = com.youjoting.XMPPWechat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "XMPPWechat/XMPPWechat-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1218,6 +1243,7 @@
 			baseConfigurationReference = 528F78161487850F57815671 /* Pods-XMPPWechat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = XMPPWechat/XMPPWechat_Prefix.pch;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
@@ -1231,6 +1257,8 @@
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_BUNDLE_IDENTIFIER = com.youjoting.XMPPWechat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "XMPPWechat/XMPPWechat-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -1238,6 +1266,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 14D7689093A8ABF5699BE381 /* Pods-XMPPWechatTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = XMPPWechatTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1251,6 +1280,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 384DF871515A3665BEB163B2 /* Pods-XMPPWechatTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = XMPPWechatTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1264,6 +1294,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1819DE2B2ACCB5911137EE6B /* Pods-XMPPWechat-XMPPWechatUITests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = XMPPWechatUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.youjoting.XMPPWechatUITests;
@@ -1277,6 +1308,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 36A86DE3083D503B918D3A2D /* Pods-XMPPWechat-XMPPWechatUITests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = XMPPWechatUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.youjoting.XMPPWechatUITests;

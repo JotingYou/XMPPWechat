@@ -67,5 +67,7 @@ singleton_interface(YJXMPPTool)
  */
 -(void)xmppLogout;
 
--(void)sendFile:(NSData *)data name:(NSString *)name to:(XMPPJID *)jid;
+-(BOOL)sendFile:(NSData *)data name:(NSString *)name to:(XMPPJID *)jid;
+
+-(XMPPJID *)myJID;
 @end

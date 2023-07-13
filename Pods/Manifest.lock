@@ -12,6 +12,10 @@ PODS:
     - KissXML/Core
   - KissXML/Core (5.3.1)
   - libidn (1.35)
+  - LookinServer (1.1.7):
+    - LookinServer/Core (= 1.1.7)
+  - LookinServer/Core (1.1.7)
+  - SnapKit (5.6.0)
   - XMPPFramework (4.0.0):
     - XMPPFramework/default (= 4.0.0)
   - XMPPFramework/default (4.0.0):
@@ -21,9 +25,14 @@ PODS:
     - libidn (~> 1.35)
 
 DEPENDENCIES:
+  - LookinServer
+  - SnapKit (~> 5.6.0)
   - XMPPFramework
 
 SPEC REPOS:
+  https://gitee.com/mirrors/CocoaPods-Specs.git:
+    - LookinServer
+    - SnapKit
   trunk:
     - CocoaAsyncSocket
     - CocoaLumberjack
@@ -36,8 +45,10 @@ SPEC CHECKSUMS:
   CocoaLumberjack: 78abfb691154e2a9df8ded4350d504ee19d90732
   KissXML: 5c8e0f2e8b9f071d3e1ae123dec3eb5da615c10c
   libidn: e4576a956b797c584c77aaedfc6e3dd639b61bdc
+  LookinServer: 4ce0469b066871525611d009d8d16a7a50c23491
+  SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   XMPPFramework: 5d31ff9f73dce031b24bc49bcf88093627a3a86e
 
-PODFILE CHECKSUM: bee9ab3b225e815ab91a1ec3af3c100df982ae36
+PODFILE CHECKSUM: 6d8a8631dc868c70126688a2e498684dea2a94f5
 
 COCOAPODS: 1.12.1

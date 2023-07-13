@@ -68,6 +68,10 @@ NSString *const XMPPIncomingFileTransferErrorDomain = @"XMPPIncomingFileTransfer
 
 #pragma mark - Lifecycle
 
+- (XMPPJID *)senderJID{
+    return _senderJID;
+}
+
 - (instancetype)initWithDispatchQueue:(dispatch_queue_t)queue
 {
   self = [super initWithDispatchQueue:queue];

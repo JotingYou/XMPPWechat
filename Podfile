@@ -1,4 +1,5 @@
 # Uncomment the next line to define a global platform for your project
+source 'https://gitee.com/mirrors/CocoaPods-Specs.git'
  platform :ios, '14.0'
 
 target 'XMPPWechat' do
@@ -10,9 +11,10 @@ target 'XMPPWechat' do
     end
   end
   use_frameworks!
+  pod 'LookinServer', :configurations => ['Debug']
   pod 'XMPPFramework'
-  # Pods for XMPPWechat
-
+  pod 'SnapKit', '~> 5.6.0'
+  
   target 'XMPPWechatTests' do
     inherit! :search_paths
     # Pods for testing

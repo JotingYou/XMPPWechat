@@ -16,7 +16,20 @@
 #ifdef DEBUG
 #define YJLog(...) NSLog(@"%s\n %@ \n\n",__func__,[NSString stringWithFormat:__VA_ARGS__])
 #else
+#endif
 
+#import <XMPPWechat-Swift.h>
+
+#if defined(__cplusplus)
+#define let auto const
+#else
+#define let const __auto_type
+#endif
+
+#if defined(__cplusplus)
+#define var auto
+#else
+#define var __auto_type
 #endif
 
 #endif
